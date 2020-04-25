@@ -4,11 +4,16 @@
 	$hours = $_POST['hours'];
 
 	// データをファイルに保存
-	chmod('./myfile.csv', 0666); // 権限付与
+	$filepath = './db/answers.csv';
+	if (file_exists($filepath))
+		chmod($filepath, 0666);	// 全ユーザにrwの権限付与
+
 	$fh = fopen('./myfile.csv', 'a');
 	flock($fh, LOCK_EX);
-	$line = $name.','.$hours."\n";
-	fwrite($fh, $line);
+	{
+		$line = $name.','.$hours."\n";
+		fwrite($fh, $line);
+	}
 	flock($fh, LOCK_UN);
 	fclose($fh);
 ?>

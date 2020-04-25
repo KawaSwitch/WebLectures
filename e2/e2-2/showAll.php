@@ -170,7 +170,7 @@
 		</header>
 
 		<div id="contents">
-			<h3>みんなの入力結果</h3>
+			<h3>みんなの回答結果</h3>
 
 			<!-- グラフ表示 -->
 			<div id="gender_chart" class="pie-chart"></div>
