@@ -17,6 +17,10 @@
 	// 質問5
 	if ($opinion == 'ご自由にどうぞ' || $opinion == '')
 		$opinion = '記述なし';
+	
+	// CSV保存用に改行コードと,(カンマ)を取り除く
+	$opinion = str_replace(array("\r", "\n"), '', $opinion);
+	$opinion = str_replace(',', '、', $opinion);
 
 	// データをファイルに保存
 	$filepath = './db/answers.csv';
