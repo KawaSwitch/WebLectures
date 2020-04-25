@@ -20,6 +20,11 @@
 		flock($fh, LOCK_UN);
 		fclose($fh);
 	}
+	else 
+	{
+		echo 'まだ入力がありません';
+		exit();
+	}
 
 	// データのラベル配列から数値が初期化された連想配列を取得する
 	function getInitDataDict($labels)
@@ -31,7 +36,7 @@
 	}
 
 	// データの連想配列からパーセントグラフ表示用の連想配列を作成し戻す
-	function convertToDataPointsDict($datas)
+	function convertToPercentageDataPointsDict($datas)
 	{
 		$graph_datas = array();
 		$sum = 0;
@@ -43,58 +48,65 @@
 		return $graph_datas;
 	}
 
+	// データの連想配列からカウントグラフ(棒グラフとか)表示用の連想配列を作成し戻す
+	function convertToCountDataPointsDict($datas)
+	{
+		$graph_datas = array();
+		foreach ($datas as $data_key => $data_value)
+			array_push($graph_datas, array('label'=>$data_key, 'y'=>$data_value));
+		return $graph_datas;
+	}
+
 	$show_datas = array(
-		getInitDataDict(array('男性', '女性', '無回答')),
-		getInitDataDict(array('はい', 'いいえ')),
-		getInitDataDict(array('1だけ', '2だけ', '1と2どっちも', 'ない')),
-		getInitDataDict(array('イカ', 'タコ')),
+		'gender' => getInitDataDict(array('男性', '女性', '無回答')),
+		'known' => getInitDataDict(array('はい', 'いいえ')),
+		'played' => getInitDataDict(array('1だけ', '2だけ', '1と2どっちも', 'ない')),
+		'kind' => getInitDataDict(array('イカ', 'タコ')),
+		'salmonid' => getInitDataDict(array('コウモリ', 'カタパッド', 'モグラ', 'テッパン', 'ヘビ', 'バクダン', 'タワー', '選択なし')),
 	);
 
 	// グラフ表示用のデータ生成
 	foreach ($answers as $answer)
 	{
 		// 円グラフ
-		for ($i = 1; $i < 5; $i++)
-			$show_datas[$i - 1][$answer[$i]]++;
+		$show_datas['gender'][$answer[1]]++;
+		$show_datas['known'][$answer[2]]++;
+		$show_datas['played'][$answer[3]]++;
+		$show_datas['kind'][$answer[4]]++;
 
+		// 棒グラフ
+		foreach (explode(' / ', $answer[5]) as $boss_name)
+			$show_datas['salmonid'][$boss_name]++;
 	}
 
+	// canvasJS用のデータへ変換
 	$data_points_list = array();
-	foreach ($show_datas as $show_data)
-		// canvasJS用のデータへ変換
-		array_push($data_points_list, convertToDataPointsDict($show_data));
-
-	$dataPoints = array( 
-		array("label"=>"Industrial", "y"=>51.7),
-		array("label"=>"Transportation", "y"=>26.6),
-		array("label"=>"Residential", "y"=>13.9),
-		array("label"=>"Commercial", "y"=>7.8)
-	);
-
-	$dataPoints2 = array( 
-		array("label"=>"Chrome", "y"=>64.02),
-		array("label"=>"Firefox", "y"=>12.55),
-		array("label"=>"IE", "y"=>8.47),
-		array("label"=>"Safari", "y"=>6.08),
-		array("label"=>"Edge", "y"=>4.29),
-		array("label"=>"Others", "y"=>4.59)
-	);
+	foreach ($show_datas as $show_data_key => $show_data_value)
+	{
+		if ($show_data_key == 'salmonid')
+			array_push($data_points_list, convertToCountDataPointsDict($show_data_value));
+		else
+			array_push($data_points_list, convertToPercentageDataPointsDict($show_data_value));
+	}
 ?>
 
 <html>
 	<head>
-		<meta charset=utf-8>
+		<meta charset='utf-8'>
 		<link rel="stylesheet" type="text/css" href="base.css">
 		<link rel="stylesheet" type="text/css" href="questionnaire.css">
 		<title>みんなのアンケート調査の結果</title>
 
 		<script>
-			function createChart(id, title, dataPoints)
+			function createPieChart(id, title, dataPoints)
 			{
 				return new CanvasJS.Chart(id, {
 					animationEnabled: true,
 					title: {
-						text: title
+						text: title,
+						fontSize: 25,
+						fontFamily: 'sans-serif',
+						fontWeight: "bold"
 					},
 					data: [{
 						type: "pie",
@@ -110,18 +122,40 @@
 					}]
 				});
 			}
+			function createBarChart(id, title, ytitle, legend, dataPoints)
+			{
+				return new CanvasJS.Chart(id, {
+					animationEnabled: true,
+					theme: "light2", // "light1", "light2", "dark1", "dark2"
+					title:{
+						text: title,
+						fontSize: 25,
+						fontFamily: 'sans-serif'
+					},
+					axisY: {
+						title: ytitle
+					},
+					data: [{        
+						type: "column",  
+						showInLegend: true, 
+						legendMarkerColor: "grey",
+						legendText: legend,
+						dataPoints: dataPoints
+					}]
+				});
+			}
 
-			window.onload = function() {
+			window.onload = function() 
+			{
+				var charts = [
+					createPieChart('gender_chart', '回答者の性別比', <?php echo json_encode($data_points_list[0], JSON_NUMERIC_CHECK); ?>),
+					createPieChart('known_chart', '#1. あなたはスプラトゥーンを知っていますか？', <?php echo json_encode($data_points_list[1], JSON_NUMERIC_CHECK); ?>),
+					createPieChart('played_chart', '#2. スプラトゥーンをプレイしたことはありますか？', <?php echo json_encode($data_points_list[2], JSON_NUMERIC_CHECK); ?>),
+					createPieChart('kind_chart', '#3. イカとタコはどちらが好みですか？', <?php echo json_encode($data_points_list[3], JSON_NUMERIC_CHECK); ?>),
+					createBarChart('salmonid_chart', '#4. 強いと思う（もしくは強そうな）大物シャケを選んでください', '投票数', '大物シャケ', <?php echo json_encode($data_points_list[4], JSON_NUMERIC_CHECK); ?>)
+				];
 
-			var charts = [
-				createChart('gender_chart', '回答者の性別比', <?php echo json_encode($data_points_list[0], JSON_NUMERIC_CHECK); ?>),
-				createChart('known_chart', '#1. あなたはスプラトゥーンを知っていますか？', <?php echo json_encode($data_points_list[1], JSON_NUMERIC_CHECK); ?>),
-				createChart('played_chart', '#2. スプラトゥーンをプレイしたことはありますか？', <?php echo json_encode($data_points_list[2], JSON_NUMERIC_CHECK); ?>),
-				createChart('kind_chart', '#3. イカとタコはどちらが好みですか？', <?php echo json_encode($data_points_list[3], JSON_NUMERIC_CHECK); ?>),
-			];
-
-			charts.forEach(function(chart) { chart.render(); });
-			
+				charts.forEach(function(chart) { chart.render(); });		
 			}
 		</script>
 		<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
@@ -136,32 +170,45 @@
 		</header>
 
 		<div id="contents">
-			<p>
-				みんなの入力結果<br>
-			</p>
+			<h3>みんなの入力結果</h3>
 
-			<!-- 名前 = <?= $name ?> <br>
-			性別 = <?= $gender ?> <br>
-
-			<h3>#1. あなたはスプラトゥーンを知っていますか？</h3>
-			<?= $known ?> <br>
-
-			<h3>#2. スプラトゥーンをプレイしたことはありますか？</h3>
-			<?= $played ?> <br>
-
-			<h3>#3. イカとタコはどちらが好みですか？</h3>
-			<?= $kind ?> <br>
-
-			<h3>#4. 強いと思う（もしくは強そうな）大物シャケを選んでください</h3>
-			<?= $salmonid ?> <br>
-
-			<h3>#5. スプラトゥーンに対する意見をお聞かせください</h3>
-			<?= $opinion ?> <br> -->
-
+			<!-- グラフ表示 -->
 			<div id="gender_chart" class="pie-chart"></div>
 			<div id="known_chart" class="pie-chart"></div>
 			<div id="played_chart" class="pie-chart"></div>
 			<div id="kind_chart" class="pie-chart"></div>
+			<div id="salmonid_chart" class="bar-chart"></div>
+
+			<!-- 意見 -->
+			<h3>みんなのスプラトゥーンに関する意見</h3>
+			<p>
+				<ul>
+					<?php
+						$valid_ans = array();
+						foreach ($answers as $answer)
+						{
+							if (strcmp(rtrim($answer[6]), '記述なし'))
+								array_push($valid_ans, $answer[6]);					
+						}
+
+						if (count($valid_ans) == 0)
+							echo '意見はまだありませんでした。';
+						else
+						{
+							// 意見があれば最新の5つを表示する
+							$cnt = count($valid_ans);
+							for ($i = $cnt; $i > ($cnt-5 > 0 ? $cnt-5 : 0); $i--)
+							{?>
+								<li>
+									<?php echo htmlspecialchars($valid_ans[$i - 1]); ?>
+								</li>
+								<?php
+							}
+							echo 'など';
+						}
+					?>
+				</ul>
+			</p>
 
 			<form class='q-submit' action="input.html">
 				<input class="submit" type="submit" value="入力画面に戻る">
