@@ -1,0 +1,102 @@
+@font-face {
+	font-family: "ikamodoki";
+	src: url("./font/ikamodoki/ikamodoki1_0.eot") format("embedded-opentype"),
+	url("./font/ikamodoki/ikamodoki1_0.ttf") format("truetype"); 
+}
+
+p {
+	font-size: 18px;
+	color: #494949;
+}
+
+h3 {
+	padding: 0.25em 0.5em;
+	color: #494949;
+	background: transparent;
+	border-left: solid 5px #ffb561; /* 左線 */
+	margin-top: 30px;
+	margin-bottom: 15px;
+	clear: both;
+}
+
+input, textarea {
+	width: 400px;
+	margin-top: 10px;
+	margin-bottom: 30px;
+	padding: 10px;
+	font-size: 16px;
+	border: 1px solid #dee7ec;
+}
+textarea {
+	width: 800px;
+	height: 100px;
+}
+
+form {
+	margin-top: 20px;
+}
+
+img {
+	width: 150px;
+}
+.answer-container {
+	display: inline-block;
+	padding-top: 10px;
+}
+.answer-container input {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	float: left;
+}
+.answer-container figure {
+	float: right;
+}
+
+.question {
+	margin-top: 40px;
+}
+
+.answer {
+	font-size: 20px;
+	font-family: 'ikamodoki','Hiragino Kaku Gothic Pro','ヒラギノ角ゴ Pro W3','メイリオ',Meiryo,'ＭＳ Ｐゴシック',sans-serif;
+}
+
+.q-submit {
+	text-align: center;
+}
+.submit {
+	margin-top: 20px;
+	width: 350px;
+	background-color: #dee7ec;
+	color: #003a5c;
+	font-size: 16px;
+}
+.submit:hover {
+	background-color: #d0dfe7;
+}
+
+.friend-submit {
+	margin-top: 20px;
+	width: 350px;
+	background-color: #f0edd8;
+	color: #ff3300;
+	font-size: 16px;
+}
+.friend-submit:hover {
+	background-color: #eee8b9;
+}
+
+.pie-chart {
+	text-align: center;
+	height: 300px;
+	width: 80%;
+	margin: 50px auto;
+}
+
+.bar-chart {
+	text-align: center;
+	height: 500px;
+	width: 80%;
+	margin: 50px auto;
+}

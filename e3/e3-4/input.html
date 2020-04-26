@@ -1,0 +1,137 @@
+<html>
+	<head>
+		<meta charset=utf-8>
+		<link rel="stylesheet" type="text/css" href="base.css">
+		<link rel="stylesheet" type="text/css" href="questionnaire.css">
+		<title>アンケート調査</title>
+	</head>
+	<body>
+		<header>
+			<div class='header-inner'>
+				Questionnaire
+			</div>
+		</header>
+		
+		<div id="contents">
+			<h2>スプラトゥーンに関するアンケート</h2>
+
+			<form method="POST" action="receiveInput.php">
+				お名前（ニックネームも可）:<br>
+				<input type="text" name="name" value="なまえ"> <br>
+				性別:
+				<div>
+					<label><input type="radio" name="gender" value="男性" checked />男性</label>
+					<label><input type="radio" name="gender" value="女性" />女性</label>
+					<label><input type="radio" name="gender" value="無回答" />無回答</label> <br><br>
+				</div>
+				
+				<div class="question">
+					<h3>#1. あなたはスプラトゥーンを知っていますか？</h3>
+					<div class="answer">
+						<label><input type="radio" name="known" value="はい" checked />はい</label>
+						<label><input type="radio" name="known" value="いいえ" />いいえ</label>
+					</div>
+				</div>
+
+				<div class="question">
+					<h3>#2. スプラトゥーンをプレイしたことはありますか？</h3>
+					<div class="answer">
+						<label><input type="radio" name="played" value="1だけ" checked />1 だけ</label>
+						<label><input type="radio" name="played" value="2だけ" />2 だけ</label>
+						<label><input type="radio" name="played" value="1と2どっちも" />1 と 2 どっちも</label>
+						<label><input type="radio" name="played" value="ない" />ないです...</label>
+					</div>	
+				</div>
+
+				<div class="question clearfix">
+					<h3>#3. イカとタコはどちらが好みですか？</h3>
+					<div class="answer">
+						<label class="answer-container">
+							<input type="radio" name="kind" value="イカ" checked />
+							<figure class='image-box'>
+								<img src='./images/ika.jpg' alt='イカ(メス)'>
+								<figcaption>イカ</figcaption>
+							</figure>
+						</label>
+
+						<label class="answer-container">
+							<input type="radio" name="kind" value="タコ" />
+							<figure class='image-box'>
+								<img src='./images/tako.jpg' alt='タコ(メス)'>
+								<figcaption>タコ</figcaption>
+							</figure>
+						</label>
+					</div>	
+				</div>
+
+				<div class="question clearfix">
+					<h3>#4. 強いと思う（もしくは強そうな）大物シャケを選んでください</h3>
+					<div class="answer">
+						<label class="answer-container">
+							<input type="checkbox" name="salmonid[]" value="コウモリ" />
+							<figure class='image-box'>
+								<img src='./images/boss_salmonids/drizzler.png' alt='コウモリ'>
+								<figcaption>コウモリ</figcaption>
+							</figure>
+						</label>
+						<label class="answer-container">
+							<input type="checkbox" name="salmonid[]" value="カタパッド" />
+							<figure class='image-box'>
+								<img src='./images/boss_salmonids/flyfish.png' alt='カタパッド'>
+								<figcaption>カタパッド</figcaption>
+							</figure>
+						</label>
+						<label class="answer-container">
+							<input type="checkbox" name="salmonid[]" value="モグラ" />
+							<figure class='image-box'>
+								<img src='./images/boss_salmonids/maws.png' alt='モグラ'>
+								<figcaption>モグラ</figcaption>
+							</figure>
+						</label>				
+						<label class="answer-container">
+							<input type="checkbox" name="salmonid[]" value="テッパン" />
+							<figure class='image-box'>
+								<img src='./images/boss_salmonids/scrapper.png' alt='テッパン'>
+								<figcaption>テッパン</figcaption>
+							</figure>
+						</label>
+						<label class="answer-container">
+							<input type="checkbox" name="salmonid[]" value="ヘビ" />
+							<figure class='image-box'>
+								<img src='./images/boss_salmonids/steel_eel.png' alt='ヘビ'>
+								<figcaption>ヘビ</figcaption>
+							</figure>
+						</label>
+						<label class="answer-container">
+							<input type="checkbox" name="salmonid[]" value="バクダン" />
+							<figure class='image-box'>
+								<img src='./images/boss_salmonids/steel_head.png' alt='バクダン'>
+								<figcaption>バクダン</figcaption>
+							</figure>
+						</label>
+						<label class="answer-container">
+							<input type="checkbox" name="salmonid[]" value="タワー" />
+							<figure class='image-box'>
+								<img src='./images/boss_salmonids/stinger.png' alt='タワー'>
+								<figcaption>タワー</figcaption>
+							</figure>
+						</label>
+					</div>	
+				</div>
+
+				<div class="question">
+					<h3>#5. スプラトゥーンに対する意見をお聞かせください</h3>
+					<textarea name="opinion">ご自由にどうぞ</textarea>
+				</div>
+
+				<div class="q-submit">
+					<input class="submit" type="submit" value="回答">
+				</div>
+			</form>
+		</div>
+
+		<footer>
+			
+		</footer>
+	</body>
+</html>
