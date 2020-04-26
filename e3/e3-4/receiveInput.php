@@ -46,6 +46,23 @@
 	$salmonid = htmlspecialchars($salmonid);
 	$opinion = htmlspecialchars($opinion);
 
+	// とりあえずここ
+	$kind_img_path = array(
+		'イカ' => './images/inkling.png',
+		'タコ' => './images/octoling.png',
+	);
+	$salmonid_img_path = array(
+		'ザコシャケ' => './images/boss_salmonids/lesser_salmonids.png',
+		'タマヒロイ' => './images/boss_salmonids/snatcher.png',
+		'コウモリ' => './images/boss_salmonids/drizzler.png',
+		'カタパッド' => './images/boss_salmonids/flyfish.png',
+		'モグラ' => './images/boss_salmonids/maws.png',
+		'テッパン' => './images/boss_salmonids/scrapper.png',
+		'ヘビ' => './images/boss_salmonids/steel_eel.png',
+		'バクダン' => './images/boss_salmonids/steel_head.png',
+		'タワー' => './images/boss_salmonids/stinger.png',
+	);
+
 
 	// セッション状態の設定
 	$_SESSION['status'] = '登録中';
@@ -72,20 +89,35 @@
 				回答内容を確認してください<br>
 			</p>
 
-			名前 = <?= $name ?> <br>
-			性別 = <?= $gender ?> <br>
+			名前: <?= $name ?> <br>
+			性別: <?= $gender ?> <br>
 
 			<h3>#1. あなたはスプラトゥーンを知っていますか？</h3>
-			<?= $known ?> <br>
+			<div class="splatoon"><?= $known ?></div> <br>
 
 			<h3>#2. スプラトゥーンをプレイしたことはありますか？</h3>
-			<?= $played ?> <br>
+			<div class="splatoon"><?= $played ?></div> <br>
 
 			<h3>#3. イカとタコはどちらが好みですか？</h3>
-			<?= $kind ?> <br>
+			<div class="splatoon">
+				<figure>
+					<img class="" src=<?= $kind_img_path[$kind] ?>>
+					<figcaption><?= $kind ?></figcaption>
+				</figure>
+			</div>
 
 			<h3>#4. 強いと思う（もしくは強そうな）シャケを選んでください</h3>
-			<?= $salmonid ?> <br>
+			<div class="splatoon select-box">
+				<?php
+					foreach (explode(' / ', $salmonid) as $salmonid_name)
+					{
+						print('<figure>'."\n");
+						print('<img class="answering-container" src='.$salmonid_img_path[$salmonid_name].'>'."\n");
+						print('<figcaption>'.$salmonid_name.'</figcaption>'."\n");
+						print('</figure>'."\n");
+					}
+				?>
+			</div>
 
 			<h3>#5. スプラトゥーンに対する意見をお聞かせください</h3>
 			<?= $opinion ?> <br>

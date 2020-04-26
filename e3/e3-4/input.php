@@ -61,6 +61,7 @@
 	$_SESSION['status'] = '登録前';
 ?>
 
+<!DOCTYPE html>
 <html>
 	<head>
 		<meta charset=utf-8>
@@ -102,10 +103,10 @@
 					<h3>#1. あなたはスプラトゥーンを知っていますか？</h3>
 					<div class="answer radio-box">
 						<input type="radio" id="yes" name="known" value="はい" <?= $known_checked['はい'] ?> />
-						<label for="yes" class="answer-container">はい</label>
+						<label for="yes" class="answer-container str-answer-box">はい</label>
 
 						<input type="radio" id="no" name="known" value="いいえ" <?= $known_checked['いいえ'] ?> />
-						<label for="no" class="answer-container">いいえ</label>
+						<label for="no" class="answer-container str-answer-box">いいえ</label>
 					</div>
 				</div>
 
@@ -113,16 +114,16 @@
 					<h3>#2. スプラトゥーンをプレイしたことはありますか？</h3>
 					<div class="answer radio-box">
 						<input type="radio" id="one" name="played" value="1だけ" <?= $played_checked['1だけ'] ?> />
-						<label for="one" class="answer-container">1 だけ</label>
+						<label for="one" class="answer-container str-answer-box">1 だけ</label>
 
 						<input type="radio" id="two" name="played" value="2だけ" <?= $played_checked['2だけ'] ?> />
-						<label for="two" class="answer-container">2 だけ</label>
+						<label for="two" class="answer-container str-answer-box">2 だけ</label>
 
 						<input type="radio" id="both" name="played" value="1と2どっちも" <?= $played_checked['1と2どっちも'] ?> />
-						<label for ="both" class="answer-container">1 と 2 どっちも</label>
+						<label for ="both" class="answer-container str-answer-box">1 と 2 どっちも</label>
 
 						<input type="radio" id="never" name="played" value="ない" <?= $played_checked['ない'] ?> />
-						<label for="never" class="answer-container">ないです...</label>
+						<label for="never" class="answer-container str-answer-box">ないです...</label>
 					</div>	
 				</div>
 

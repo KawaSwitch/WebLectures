@@ -100,6 +100,7 @@ img {
 }
 
 .splatoon {
+	font-size: 22px;
 	font-family: 'ikamodoki','Hiragino Kaku Gothic Pro','ヒラギノ角ゴ Pro W3','メイリオ',Meiryo,'ＭＳ Ｐゴシック',sans-serif;
 }
 
@@ -113,6 +114,10 @@ img {
     border-radius: 20px;
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
+}
+
+.str-answer-box {
+	height: 40px;
 }
 
 /* 画像のラジオボタン */
@@ -151,6 +156,7 @@ img {
 	cursor: pointer;
 }
 .radio-box input[type="radio"]:checked + label {
+	color: #fc2e0a;
 	background-color: #d0e6fd;
 	border: 2px solid #3275bc;
 }
@@ -159,6 +165,12 @@ img {
 .select-box {
 	display: flex;
 	flex-wrap: wrap;
+}
+.select-box::after{
+	/* 3つ横並びで中央揃えの際に綺麗に並べる */
+	content: "";
+	display: block;
+	width: 30%;
 }
 .select-box img {
 	width: 220px;
@@ -192,6 +204,7 @@ img {
 	cursor: pointer;
 }
 .select-box input[type="checkbox"]:checked + figure {
+	color: #fc2e0a;
 	background-color: #d0e6fd;
 	border: 2px solid #3275bc;
 }
@@ -219,6 +232,7 @@ img {
 	color: #ddd;
 	border: 2px solid #ddd;
 	text-align: center;
+	font-size: 17px;
 	display: inline-block;
 	padding: 5px 0px;
 	margin-top: 5px;
