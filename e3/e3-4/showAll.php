@@ -212,7 +212,7 @@
 				</ul>
 			</p>
 
-			<form class='q-submit' action="input.html">
+			<form class='q-submit' method="POST" action="input.php">
 				<input class="submit" type="submit" value="入力画面に戻る">
 			</form>
 		</div>

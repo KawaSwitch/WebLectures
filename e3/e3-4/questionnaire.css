@@ -87,6 +87,17 @@ img {
 	background-color: #eee8b9;
 }
 
+.ok-submit {
+	margin-top: 20px;
+	width: 350px;
+	background-color: #f7d2c7;
+	color: #fd1d1d;
+	font-size: 16px;
+}
+.ok-submit:hover {
+	background-color: #fcc3b1;
+}
+
 .pie-chart {
 	text-align: center;
 	height: 300px;
@@ -99,4 +110,14 @@ img {
 	height: 500px;
 	width: 80%;
 	margin: 50px auto;
+}
+
+.splatoon {
+	font-family: 'ikamodoki','Hiragino Kaku Gothic Pro','ヒラギノ角ゴ Pro W3','メイリオ',Meiryo,'ＭＳ Ｐゴシック',sans-serif;
+}
+
+.attention-center {
+	text-align: center;
+	color: #ff3300;
+	font-size: 40px;
 }

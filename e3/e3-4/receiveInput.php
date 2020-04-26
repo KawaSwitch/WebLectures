@@ -1,4 +1,10 @@
 <?php
+	// セッションの開始
+	session_start();
+
+	if ($_SESSION['status'] != "登録前")
+		die('Error: receiveInputの不正な呼び出しです。');
+
 	// 入力データの取得
 	$name = $_POST['name'];		// アルバイトの名前
 	$gender = $_POST['gender'];	// 性別
@@ -22,32 +28,14 @@
 	$opinion = str_replace(array("\r", "\n"), '', $opinion);
 	$opinion = str_replace(',', '、', $opinion);
 
-	// データをファイルに保存
-	{
-		$dsn = 'mysql:dbname=assign_web_master;host=localhost';
-		$user = 'kawakami';
-		$password = 'kawakami';
-
-		try
-		{
-			$dbh = new PDO($dsn, $user, $password);
-	
-			// データベースへデータを登録
-			$sql = "INSERT INTO questionnaire (name, gender, known, played, kind, salmonid, opinion)
-				VALUES ('$name', '$gender', '$known', '$played', '$kind', '$salmonid', '$opinion')";
-			$res = $dbh->query($sql);
-	
-			if ($res == false)
-				echo 'failed'.'<br />';
-		}
-		catch (PDOExeption $e)
-		{
-			print('Error:'.$e->getMessage());
-			die();
-		}
-	
-		$dbh = null;
-	}
+	// 入力データをセッションにキャッシュ
+	$_SESSION['name'] = $name;
+	$_SESSION['gender'] = $gender;
+	$_SESSION['known'] = $known;
+	$_SESSION['played'] = $played;
+	$_SESSION['kind'] = $kind;
+	$_SESSION['salmonid'] = $salmonid;
+	$_SESSION['opinion'] = $opinion;
 
 	// 出力用データに変換
 	$name = htmlspecialchars($name);
@@ -58,6 +46,9 @@
 	$salmonid = htmlspecialchars($salmonid);
 	$opinion = htmlspecialchars($opinion);
 
+
+	// セッション状態の設定
+	$_SESSION['status'] = '登録中';
 // HTMLの出力
 ?>
 
@@ -66,7 +57,7 @@
 		<meta charset=utf-8>
 		<link rel="stylesheet" type="text/css" href="base.css">
 		<link rel="stylesheet" type="text/css" href="questionnaire.css">
-		<title>アンケート調査の入力結果</title>
+		<title>アンケート調査の入力確認画面</title>
 	</head>
 	
 	<body>
@@ -78,7 +69,7 @@
 
 		<div id="contents">
 			<p>
-				ご協力ありがとうございました！<br>
+				回答内容を確認してください<br>
 			</p>
 
 			名前 = <?= $name ?> <br>
@@ -102,13 +93,13 @@
 			<!-- 画面遷移 -->
 			<div class="clearfix">
 				<div class='float-left'>
-					<form action="input.html">
+					<form method="POST" action="input.php">
 						<input class="submit" type="submit" value="入力画面に戻る">
 					</form>
 				</div>
 				<div class='float-right'>
-					<form method="POST" action="showAll.php">
-						<input class="friend-submit" type="submit" value="みんなの結果を見る">
+					<form method="POST" action="fixInput.php">
+						<input class="ok-submit" type="submit" value="この内容でOK！">
 					</form>
 				</div>
 			</div>
