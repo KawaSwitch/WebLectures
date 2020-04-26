@@ -13,11 +13,7 @@
 			// データベースからアルバイトデータの全件読み出し
 			$sql = 'select * from questionnaire';
 			foreach ($dbh->query($sql) as $row)
-			{
-				// unset($row['id']);
-				// $answer = explode(',', $row);
 				array_push($answers, $row);
-			}
 		}
 		catch (PDOExeption $e)
 		{
@@ -212,9 +208,19 @@
 				</ul>
 			</p>
 
-			<form class='q-submit' method="POST" action="input.php">
-				<input class="submit" type="submit" value="入力画面に戻る">
-			</form>
+			<!-- 画面遷移 -->
+			<div class="clearfix">
+				<div class='float-left'>
+					<form method="POST" action="input.php">
+						<input class="submit" type="submit" value="入力画面に戻る">
+					</form>
+				</div>
+				<div class='float-right'>
+					<form method="POST" action="download.php">
+						<input class="friend-submit" type="submit" value="CSV形式でダウンロード">
+					</form>
+				</div>
+			</div>
 		</div>
 	</body>
 </html>
