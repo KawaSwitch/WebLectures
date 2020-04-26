@@ -37,8 +37,14 @@
 
 	// 既入力データが存在するならセッションから復元する
 	// 文字列の復元
-	$name = (isset($_SESSION['name'])) ? $_SESSION['name'] : "なまえ";
-	$opinion = (isset($_SESSION['opinion'])) ? $_SESSION['opinion'] : "";
+	$name = (isset($_SESSION['name'])) ? $_SESSION['name'] : 'なまえ';
+	
+	if (isset($_SESSION['opinion']) && $_SESSION['opinion'] == '記述なし')
+		$opinion = 'ご自由にどうぞ';
+	elseif (isset($_SESSION['opinion']))
+		$opinion = $_SESSION['opinion'];
+	else
+		$opinion = 'ご自由にどうぞ';
 
 	// ラジオボタンの復元
 	$gender_checked = getRadioCheckedDict('gender', array('男性', '女性', '無回答'));
@@ -49,7 +55,7 @@
 	// チェックボックスの復元
 	$salmonid_checked = getCheckboxCheckedDict('salmonid', array('コウモリ', 'カタパッド', 'モグラ', 'テッパン', 'ヘビ', 'バクダン', 'タワー', '選択なし'), ' / ');
 
-	
+
 	// セッション状態の設定
 	$_SESSION['status'] = '登録前';
 ?>
@@ -177,7 +183,7 @@
 
 				<div class="question">
 					<h3>#5. スプラトゥーンに対する意見をお聞かせください</h3>
-					<textarea name="opinion">ご自由にどうぞ</textarea>
+					<textarea name="opinion"><?= htmlspecialchars($opinion) ?></textarea>
 				</div>
 
 				<div class="q-submit">
