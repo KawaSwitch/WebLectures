@@ -38,7 +38,7 @@
 	// 既入力データが存在するならセッションから復元する
 	// 文字列の復元
 	$name = (isset($_SESSION['name'])) ? $_SESSION['name'] : 'なまえ';
-	
+
 	if (isset($_SESSION['opinion']) && $_SESSION['opinion'] == '記述なし')
 		$opinion = 'ご自由にどうぞ';
 	elseif (isset($_SESSION['opinion']))
@@ -53,7 +53,8 @@
 	$kind_checked = getRadioCheckedDict('kind', array('イカ', 'タコ'));
 
 	// チェックボックスの復元
-	$salmonid_checked = getCheckboxCheckedDict('salmonid', array('コウモリ', 'カタパッド', 'モグラ', 'テッパン', 'ヘビ', 'バクダン', 'タワー', '選択なし'), ' / ');
+	$salmonid_checked = getCheckboxCheckedDict('salmonid', 
+		array('ザコシャケ', 'タマヒロイ', 'コウモリ', 'カタパッド', 'モグラ', 'テッパン', 'ヘビ', 'バクダン', 'タワー', '選択なし'), ' / ');
 
 
 	// セッション状態の設定
@@ -65,6 +66,7 @@
 		<meta charset=utf-8>
 		<link rel="stylesheet" type="text/css" href="base.css">
 		<link rel="stylesheet" type="text/css" href="questionnaire.css">
+		<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 		<title>アンケート調査</title>
 	</head>
 	<body>
@@ -81,45 +83,64 @@
 				お名前（ニックネームも可）:<br>
 				<input type="text" name="name" value="<?= htmlspecialchars($name) ?>"> <br>
 				性別:
-				<div>
-					<label><input type="radio" name="gender" value="男性" <?= $gender_checked['男性'] ?> />男性</label>
-					<label><input type="radio" name="gender" value="女性" <?= $gender_checked['女性'] ?> />女性</label>
-					<label><input type="radio" name="gender" value="無回答" <?= $gender_checked['無回答'] ?> />無回答</label> <br><br>
+				<div class="select-gender">
+					<input type="radio" name="gender" id="male" class="male" value="男性" <?= $gender_checked['男性'] ?> />
+					<label for="male">
+						<i class="fas fa-male male"></i> 男性
+					</label>
+					<input type="radio" name="gender" id="female" class="female" value="女性" <?= $gender_checked['女性'] ?> />
+					<label for="female">
+						<i class="fas fa-female female"></i> 女性
+					</label>
+					<input type="radio" name="gender" id="others" class="others" value="無回答" <?= $gender_checked['無回答'] ?> />
+					<label for="others">
+						無回答
+					</label> <br><br>
 				</div>
 				
 				<div class="question">
 					<h3>#1. あなたはスプラトゥーンを知っていますか？</h3>
-					<div class="answer">
-						<label><input type="radio" name="known" value="はい" <?= $known_checked['はい'] ?> />はい</label>
-						<label><input type="radio" name="known" value="いいえ" <?= $known_checked['いいえ'] ?> />いいえ</label>
+					<div class="answer radio-box">
+						<input type="radio" id="yes" name="known" value="はい" <?= $known_checked['はい'] ?> />
+						<label for="yes" class="answer-container">はい</label>
+
+						<input type="radio" id="no" name="known" value="いいえ" <?= $known_checked['いいえ'] ?> />
+						<label for="no" class="answer-container">いいえ</label>
 					</div>
 				</div>
 
 				<div class="question">
 					<h3>#2. スプラトゥーンをプレイしたことはありますか？</h3>
-					<div class="answer">
-						<label><input type="radio" name="played" value="1だけ" <?= $played_checked['1だけ'] ?> />1 だけ</label>
-						<label><input type="radio" name="played" value="2だけ" <?= $played_checked['2だけ'] ?> />2 だけ</label>
-						<label><input type="radio" name="played" value="1と2どっちも" <?= $played_checked['1と2どっちも'] ?> />1 と 2 どっちも</label>
-						<label><input type="radio" name="played" value="ない" <?= $played_checked['ない'] ?> />ないです...</label>
+					<div class="answer radio-box">
+						<input type="radio" id="one" name="played" value="1だけ" <?= $played_checked['1だけ'] ?> />
+						<label for="one" class="answer-container">1 だけ</label>
+
+						<input type="radio" id="two" name="played" value="2だけ" <?= $played_checked['2だけ'] ?> />
+						<label for="two" class="answer-container">2 だけ</label>
+
+						<input type="radio" id="both" name="played" value="1と2どっちも" <?= $played_checked['1と2どっちも'] ?> />
+						<label for ="both" class="answer-container">1 と 2 どっちも</label>
+
+						<input type="radio" id="never" name="played" value="ない" <?= $played_checked['ない'] ?> />
+						<label for="never" class="answer-container">ないです...</label>
 					</div>	
 				</div>
 
 				<div class="question clearfix">
 					<h3>#3. イカとタコはどちらが好みですか？</h3>
-					<div class="answer">
-						<label class="answer-container">
-							<input type="radio" name="kind" value="イカ" <?= $kind_checked['イカ'] ?> />
-							<figure class='image-box'>
-								<img src='./images/ika.jpg' alt='イカ(メス)'>
+					<div class="answer radio-box">
+						<input type="radio" id="squid" name="kind" value="イカ" <?= $kind_checked['イカ'] ?> />
+						<label for="squid" class="answer-container">
+							<figure>
+								<img class="border-radius" src='./images/inkling.png' alt='イカ(メス)'>
 								<figcaption>イカ</figcaption>
 							</figure>
 						</label>
 
-						<label class="answer-container">
-							<input type="radio" name="kind" value="タコ" <?= $kind_checked['タコ'] ?> />
-							<figure class='image-box'>
-								<img src='./images/tako.jpg' alt='タコ(メス)'>
+						<input type="radio" id="octo" name="kind" value="タコ" <?= $kind_checked['タコ'] ?> />
+						<label for="octo" class="answer-container">
+							<figure>
+								<img class="border-radius" src='./images/octoling.png' alt='タコ(メス)'>
 								<figcaption>タコ</figcaption>
 							</figure>
 						</label>
@@ -127,53 +148,67 @@
 				</div>
 
 				<div class="question clearfix">
-					<h3>#4. 強いと思う（もしくは強そうな）大物シャケを選んでください</h3>
-					<div class="answer">
+					<h3>#4. 強いと思う（もしくは強そうな）シャケを選んでください</h3>
+					<div class="answer select-box">
+						<label class="answer-container">
+							<input type="checkbox" name="salmonid[]" value="ザコシャケ" <?= $salmonid_checked['ザコシャケ'] ?> />
+							<figure>
+								<img src='./images/boss_salmonids/lesser_salmonids.png' alt='コジャケ・シャケ・ドスコイ'>
+								<figcaption>ザコシャケ</figcaption>
+							</figure>
+						</label>
+						<label class="answer-container">
+							<input type="checkbox" name="salmonid[]" value="タマヒロイ" <?= $salmonid_checked['タマヒロイ'] ?> />
+							<figure>
+								<img src='./images/boss_salmonids/snatcher.png' alt='タマヒロイ'>
+								<figcaption>タマヒロイ</figcaption>
+							</figure>
+						</label>
 						<label class="answer-container">
 							<input type="checkbox" name="salmonid[]" value="コウモリ" <?= $salmonid_checked['コウモリ'] ?> />
-							<figure class='image-box'>
+							<figure>
 								<img src='./images/boss_salmonids/drizzler.png' alt='コウモリ'>
 								<figcaption>コウモリ</figcaption>
 							</figure>
 						</label>
 						<label class="answer-container">
 							<input type="checkbox" name="salmonid[]" value="カタパッド" <?= $salmonid_checked['カタパッド'] ?> />
-							<figure class='image-box'>
+							<figure>
 								<img src='./images/boss_salmonids/flyfish.png' alt='カタパッド'>
 								<figcaption>カタパッド</figcaption>
 							</figure>
 						</label>
 						<label class="answer-container">
 							<input type="checkbox" name="salmonid[]" value="モグラ" <?= $salmonid_checked['モグラ'] ?> />
-							<figure class='image-box'>
+							<figure>
 								<img src='./images/boss_salmonids/maws.png' alt='モグラ'>
 								<figcaption>モグラ</figcaption>
 							</figure>
 						</label>				
 						<label class="answer-container">
 							<input type="checkbox" name="salmonid[]" value="テッパン" <?= $salmonid_checked['テッパン'] ?> />
-							<figure class='image-box'>
+							<figure>
 								<img src='./images/boss_salmonids/scrapper.png' alt='テッパン'>
 								<figcaption>テッパン</figcaption>
 							</figure>
 						</label>
 						<label class="answer-container">
 							<input type="checkbox" name="salmonid[]" value="ヘビ" <?= $salmonid_checked['ヘビ'] ?> />
-							<figure class='image-box'>
+							<figure>
 								<img src='./images/boss_salmonids/steel_eel.png' alt='ヘビ'>
 								<figcaption>ヘビ</figcaption>
 							</figure>
 						</label>
 						<label class="answer-container">
 							<input type="checkbox" name="salmonid[]" value="バクダン" <?= $salmonid_checked['バクダン'] ?> />
-							<figure class='image-box'>
+							<figure>
 								<img src='./images/boss_salmonids/steel_head.png' alt='バクダン'>
 								<figcaption>バクダン</figcaption>
 							</figure>
 						</label>
 						<label class="answer-container">
 							<input type="checkbox" name="salmonid[]" value="タワー" <?= $salmonid_checked['タワー'] ?> />
-							<figure class='image-box'>
+							<figure>
 								<img src='./images/boss_salmonids/stinger.png' alt='タワー'>
 								<figcaption>タワー</figcaption>
 							</figure>

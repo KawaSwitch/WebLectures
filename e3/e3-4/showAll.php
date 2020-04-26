@@ -60,7 +60,7 @@
 		'known' => getInitDataDict(array('はい', 'いいえ')),
 		'played' => getInitDataDict(array('1だけ', '2だけ', '1と2どっちも', 'ない')),
 		'kind' => getInitDataDict(array('イカ', 'タコ')),
-		'salmonid' => getInitDataDict(array('コウモリ', 'カタパッド', 'モグラ', 'テッパン', 'ヘビ', 'バクダン', 'タワー', '選択なし')),
+		'salmonid' => getInitDataDict(array('ザコシャケ', 'タマヒロイ', 'コウモリ', 'カタパッド', 'モグラ', 'テッパン', 'ヘビ', 'バクダン', 'タワー', '選択なし')),
 	);
 
 	// グラフ表示用のデータ生成
@@ -133,6 +133,7 @@
 					axisY: {
 						title: ytitle
 					},
+					dataPointMaxWidth: 40,
 					data: [{        
 						type: "column",  
 						showInLegend: true, 
@@ -150,7 +151,7 @@
 					createPieChart('known_chart', '#1. あなたはスプラトゥーンを知っていますか？', <?php echo json_encode($data_points_list[1], JSON_NUMERIC_CHECK); ?>),
 					createPieChart('played_chart', '#2. スプラトゥーンをプレイしたことはありますか？', <?php echo json_encode($data_points_list[2], JSON_NUMERIC_CHECK); ?>),
 					createPieChart('kind_chart', '#3. イカとタコはどちらが好みですか？', <?php echo json_encode($data_points_list[3], JSON_NUMERIC_CHECK); ?>),
-					createBarChart('salmonid_chart', '#4. 強いと思う（もしくは強そうな）大物シャケを選んでください', '投票数', '大物シャケ', <?php echo json_encode($data_points_list[4], JSON_NUMERIC_CHECK); ?>)
+					createBarChart('salmonid_chart', '#4. 強いと思う（もしくは強そうな）シャケを選んでください', '投票数', '種類', <?php echo json_encode($data_points_list[4], JSON_NUMERIC_CHECK); ?>)
 				];
 
 				charts.forEach(function(chart) { chart.render(); });		

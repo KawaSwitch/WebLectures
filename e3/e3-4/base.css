@@ -54,6 +54,7 @@ h2 {
 }
 
 figure {
+	/* figcaptionを中央に */
 	text-align: center;
 	display: table;
 	width: 1px;
