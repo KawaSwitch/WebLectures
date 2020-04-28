@@ -107,13 +107,13 @@
 			</div>
 
 			<h3>#4. 強いと思う（もしくは強そうな）シャケを選んでください</h3>
-			<div class="select-box">
-				<?php
-					if ($salmonid == '選択なし')
-						print('選択なし'."\n");
-					else
-					{
-						print('<div class="splatoon"'."\n");
+			<?php
+				if ($salmonid == '選択なし')
+					print('選択なし'."\n");
+				else
+				{ ?>
+					<div class="select-box splatoon">
+					<?php
 						foreach (explode(' / ', $salmonid) as $salmonid_name)
 						{
 							print('<figure>'."\n");
@@ -121,10 +121,11 @@
 							print('<figcaption>'.$salmonid_name.'</figcaption>'."\n");
 							print('</figure>'."\n");
 						}
-						print('</div>'."\n");
-					}
-				?>
-			</div>
+					?>
+					</div>
+				<?php
+				}
+			?>
 
 			<h3>#5. スプラトゥーンに対する意見をお聞かせください</h3>
 			<?= $opinion ?> <br>
