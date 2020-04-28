@@ -107,14 +107,21 @@
 			</div>
 
 			<h3>#4. 強いと思う（もしくは強そうな）シャケを選んでください</h3>
-			<div class="splatoon select-box">
+			<div class="select-box">
 				<?php
-					foreach (explode(' / ', $salmonid) as $salmonid_name)
+					if ($salmonid == '選択なし')
+						print('選択なし'."\n");
+					else
 					{
-						print('<figure>'."\n");
-						print('<img class="answering-container" src='.$salmonid_img_path[$salmonid_name].'>'."\n");
-						print('<figcaption>'.$salmonid_name.'</figcaption>'."\n");
-						print('</figure>'."\n");
+						print('<div class="splatoon"'."\n");
+						foreach (explode(' / ', $salmonid) as $salmonid_name)
+						{
+							print('<figure>'."\n");
+							print('<img class="answering-container" src='.$salmonid_img_path[$salmonid_name].'>'."\n");
+							print('<figcaption>'.$salmonid_name.'</figcaption>'."\n");
+							print('</figure>'."\n");
+						}
+						print('</div>'."\n");
 					}
 				?>
 			</div>
