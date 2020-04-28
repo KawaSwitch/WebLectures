@@ -17,9 +17,9 @@
 				$sql = 'select * from parttime';
 				foreach ($dbh->query($sql) as $row)
 				{
-					print('id = '.$row['id'].': ');
-					print('名前 = '.$row['name'].', ');
-					print('勤務時間 = '.$row['hours']);
+					print('id = '.htmlspecialchars($row['id']).': ');
+					print('名前 = '.htmlspecialchars($row['name']).', ');
+					print('勤務時間 = '.htmlspecialchars($row['hours']));
 					print('<br />');
 				}
 			}

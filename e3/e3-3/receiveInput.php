@@ -33,8 +33,8 @@
 		<title>アルバイトの入力結果</title>
 	</head>
 	<body>
-		名前 = <?= $name ?> <br>
-		勤務時間 = <?= $hours ?> <br>
+		名前 = <?= htmlspecialchars($name) ?> <br>
+		勤務時間 = <?= htmlspecialchars($hours) ?> <br>
 
 		<form action="input.html">
 			<input type="submit" value="入力画面に戻る">
