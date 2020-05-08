@@ -1,0 +1,37 @@
+<html>
+	<head>
+		<meta charset=utf-8>
+		<link rel="stylesheet" type="text/css" href="base.css">
+		<link rel="stylesheet" type="text/css" href="questionnaire.css">
+		<title>アンケート調査の入力完了</title>
+	</head>
+	
+	<body>
+		<header>
+			<div class='header-inner'>
+				Questionnaire
+			</div>
+		</header>
+
+		<div id="contents">
+			<p class="attention-center splatoon">
+				ごキョウリョクありがとうございました！<br>
+				みんなのケッカもミてみよう！
+			</p>
+
+			<!-- 画面遷移 -->
+			<div class="clearfix">
+				<div class='float-left'>
+					<form method="POST" action="input.php">
+						<input class="submit" type="submit" value="入力画面に戻る">
+					</form>
+				</div>
+				<div class='float-right'>
+					<form method="POST" action="showAll.php">
+						<input class="friend-submit" type="submit" value="みんなの結果を見る">
+					</form>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
