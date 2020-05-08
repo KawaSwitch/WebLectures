@@ -2,6 +2,7 @@
 	// アクションファイルの読み込み
 	require_once './actions/InputParttimerAction.php';
 	require_once './actions/SearchParttimerAction.php';
+	require_once './actions/LoginAction.php';
 
 	// セッションの開始
 	session_start();
@@ -10,12 +11,29 @@
 	$view = array();
 
 	// イベントの取得
-	$event = 'showInputPage';
+	$event = 'showLoginPage';
 	if (isset($_GET['event'])) $event = $_GET['event'];
+
+	// ログイン済みチェック
+	if ((!isLoginned()) && ($event != 'checkLogin'))
+		$event = 'showLoginPage';
 
 	// イベントに応じたアクションの選択・実行
 	switch ($event)
 	{
+		case 'logout':
+			logout();
+		case 'showLoginPage':
+			require './views/login.phtml';
+		break;
+
+		case 'checkLogin':
+			$view = checkLogin($view);
+		case 'showInputPage':
+			$view = prepareInput($view);
+			require './views/input.phtml';
+		break;
+
 		case 'showInputPage':
 			$view = prepareInput($view);
 			require './views/input.phtml';
