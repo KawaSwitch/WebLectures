@@ -1,0 +1,13 @@
+<html>
+	<head>
+		<title>アルバイトの入力結果</title>
+	</head>
+	<body>
+		名前 = <?= htmlspecialchars($view['name']) ?> <br>
+		勤務時間 = <?= htmlspecialchars($view['hours']) ?> <br>
+
+		<form method="POST" action="index.php?event=showInputPage">
+			<input type="submit" value="入力画面に戻る">
+		</form>
+	</body>
+</html>

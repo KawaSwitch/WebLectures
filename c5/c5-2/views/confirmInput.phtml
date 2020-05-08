@@ -1,0 +1,20 @@
+<html>
+	<head>
+		<title>入力確認画面</title>
+	</head>
+	<body>
+		<center>
+			<h2>アルバイトデータの確認</h2>
+
+			名前 = <?= htmlspecialchars($view['name']) ?> <br>
+			勤務時間 = <?= htmlspecialchars($view['hours']) ?> <br>
+
+			<form method="POST" action="index.php?event=fixInput">
+				<input type="submit" value="この内容で保存">
+			</form>
+			<form method="POST" action="index.php?event=showInputPage">
+				<input type="submit" value="入力画面に戻る">
+			</form>
+		</center>
+	</body>
+</html>

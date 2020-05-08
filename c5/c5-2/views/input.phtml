@@ -1,0 +1,21 @@
+<html>
+	<head>
+		<meta charset='utf-8'>
+		<title>アルバイトデータの入力</title>
+	</head>
+	<body>
+		<center>
+			<h1>アルバイトデータの入力</h1>
+			<form method="POST" action="index.php?event=receiveInput">
+				名前:<input type="text" name="name"
+					value="<?= htmlspecialchars($view['name']) ?>"><br>
+				勤務時間:<input type="text" name="hours"
+					value="<?= htmlspecialchars($view['hours']) ?>"><br><br>
+				<input type="submit" value="入力">
+			</form>
+			<form method="POST" action="index.php?event=showAll">
+				<input type="submit" value="一覧表示">
+			</form>
+		</center>
+	</body>
+</html>
