@@ -1,0 +1,255 @@
+@font-face {
+	font-family: "ikamodoki";
+	src: url("./font/ikamodoki/ikamodoki1_0.eot") format("embedded-opentype"),
+	url("./font/ikamodoki/ikamodoki1_0.ttf") format("truetype"); 
+}
+
+p {
+	font-size: 18px;
+	color: #494949;
+}
+
+h3 {
+	padding: 0.25em 0.5em;
+	color: #494949;
+	background: transparent;
+	border-left: solid 5px #ffb561; /* 左線 */
+	margin-top: 30px;
+	margin-bottom: 15px;
+	clear: both;
+}
+
+input, textarea {
+	width: 400px;
+	margin-top: 10px;
+	margin-bottom: 30px;
+	padding: 10px;
+	font-size: 16px;
+	border: 1px solid #dee7ec;
+}
+textarea {
+	width: 800px;
+	height: 100px;
+}
+
+form {
+	margin-top: 20px;
+}
+
+img {
+	width: 150px;
+}
+
+.answer {
+	font-size: 25px;
+	font-family: 'ikamodoki','Hiragino Kaku Gothic Pro','ヒラギノ角ゴ Pro W3','メイリオ',Meiryo,'ＭＳ Ｐゴシック',sans-serif;
+}
+
+.question {
+	margin-top: 40px;
+}
+
+.q-submit {
+	text-align: center;
+}
+.submit {
+	margin-top: 20px;
+	width: 350px;
+	background-color: #dee7ec;
+	color: #003a5c;
+	font-size: 16px;
+}
+.submit:hover {
+	background-color: #d0dfe7;
+}
+
+.friend-submit {
+	margin-top: 20px;
+	width: 350px;
+	background-color: #f0edd8;
+	color: #ff3300;
+	font-size: 16px;
+}
+.friend-submit:hover {
+	background-color: #eee8b9;
+}
+
+.ok-submit {
+	margin-top: 20px;
+	width: 350px;
+	background-color: #f7d2c7;
+	color: #fd1d1d;
+	font-size: 16px;
+}
+.ok-submit:hover {
+	background-color: #fcc3b1;
+}
+
+.pie-chart {
+	text-align: center;
+	height: 300px;
+	width: 80%;
+	margin: 50px auto;
+}
+
+.bar-chart {
+	text-align: center;
+	height: 500px;
+	width: 90%;
+	margin: 50px auto;
+}
+
+.splatoon {
+	font-size: 22px;
+	font-family: 'ikamodoki','Hiragino Kaku Gothic Pro','ヒラギノ角ゴ Pro W3','メイリオ',Meiryo,'ＭＳ Ｐゴシック',sans-serif;
+}
+
+.attention-center {
+	text-align: center;
+	color: #ff3300;
+	font-size: 40px;
+}
+
+.border-radius {
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+}
+
+.str-answer-box {
+	height: 40px;
+}
+
+/* 画像のラジオボタン */
+.radio-box {
+	display: flex;
+	flex-wrap: wrap;
+}
+.radio-box img {
+	width: 200px;
+}
+.radio-box .answer-container {
+	flex: auto;
+	width: 50%;
+	/* 中身の中央寄せ */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	box-sizing: border-box;
+	/* 丸みをつける */
+	border-radius: 20px;
+    -webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+}
+.radio-box input {
+	display: none;
+}
+.radio-box figure {
+	margin: 0 auto;
+}
+.radio-box input[type="radio"] + label {
+	border: 2px solid #ffffff;
+}
+.radio-box input[type="radio"]:hover + label {
+	background-color: #eef6ff;
+	border: 2px solid #bcd9f8;
+	cursor: pointer;
+}
+.radio-box input[type="radio"]:checked + label {
+	color: #fc2e0a;
+	background-color: #d0e6fd;
+	border: 2px solid #3275bc;
+}
+
+/* 画像のチェックボックス */
+.select-box {
+	display: flex;
+	flex-wrap: wrap;
+}
+.select-box::after{
+	/* 3つ横並びで中央揃えの際に綺麗に並べる */
+	content: "";
+	display: block;
+	width: 30%;
+}
+.select-box img {
+	width: 220px;
+}
+.select-box figure {
+	padding: 10px;
+	margin: 0 auto;
+	/* 丸みをつける */
+	border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+}
+.select-box .answer-container {
+	flex: auto;
+	flex-direction: row;
+	width: 32%;
+	margin: 2px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.select-box input {
+	display: none;
+}
+.select-box input[type="checkbox"] + figure {
+	border: 2px solid #ffffff;
+}
+.select-box input[type="checkbox"]:hover + figure {
+	background-color: #eef6ff;
+	border: 2px solid #bcd9f8;
+	cursor: pointer;
+}
+.select-box input[type="checkbox"]:checked + figure {
+	color: #fc2e0a;
+	background-color: #d0e6fd;
+	border: 2px solid #3275bc;
+}
+
+/* 文字のチェックボックス */
+.select-gender input {
+	display: none;
+}
+.select-gender input[type="radio"]:checked.male + label {
+	color: #3275bc;
+	border: 2px solid #3275bc;
+	background-color: #d0e6fd;
+}
+.select-gender input[type="radio"]:checked.female + label {
+	color: #ee41c3;
+	border: 2px solid #ce30b9;
+	background-color: #fad9f4;
+}
+.select-gender input[type="radio"]:checked.others + label {
+	color: #bf9701;
+	border: 2px solid #bf9701;
+	background-color: #fbf4dc;
+}
+.select-gender label {
+	color: #ddd;
+	border: 2px solid #ddd;
+	text-align: center;
+	font-size: 17px;
+	display: inline-block;
+	padding: 5px 0px;
+	margin-top: 5px;
+	margin-right: 5px;
+	width: 120px;
+}
+.select-gender label:hover {
+	color: #aaa;
+	border: 2px solid #aaa;
+	cursor: pointer;
+}
+
+.male {
+	color: #3275bc;
+}
+.female {
+	color: #ec3f9f;
+}
+
+/* テーブル */

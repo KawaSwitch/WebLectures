@@ -1,0 +1,19 @@
+<html>
+	<head>
+		<title>アンケート回答用ログイン</title>
+	</head>
+
+	<body>
+		<center>
+			<h1>アンケート入力用ログイン</h1>
+			<font color="red">
+				<?= nl2br(htmlspecialchars($view['error_message'])) ?>
+			</font>
+			<form method="POST" action="index.php?event=checkLogin">
+				ユーザ名:<input type="text" name="username"><br>
+				パスワード:<input type="password" name="password"><br><br>
+				<input type="submit" value="ログイン">
+			</form>
+		</center>
+	</body>
+</html>
