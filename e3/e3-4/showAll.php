@@ -217,8 +217,8 @@
 					</form>
 				</div>
 				<div class='float-right'>
-					<form method="POST" action="download.php">
-						<input class="friend-submit" type="submit" value="CSV形式でダウンロード">
+					<form method="POST" action="showTable.php">
+						<input class="friend-submit" type="submit" value="表形式でみんなの投票を見る">
 					</form>
 				</div>
 			</div>
