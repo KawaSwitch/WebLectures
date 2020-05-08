@@ -1,5 +1,15 @@
 <?php 
 
+function prepareLogin($view)
+{
+	// 既入力データの再表示の準備
+	$view['username'] = '';
+	if (isset($_SESSION['username']))
+		$view['username'] = $_SESSION['username'];
+	
+	return $view;
+}
+
 function checkLogin($view)
 {
 	// ユーザデータの設定
@@ -12,15 +22,13 @@ function checkLogin($view)
 
 	if (!isset($userData[$username]))
 	{
-		die("ユーザ名が間違っています。");
-		// $view['error_message'] = "ユーザ名が間違っています。";
-		// return $view;
+		$view['errorMessage'] = "ユーザ名が間違っています。";
+		return $view;
 	}
 	if ($userData[$username] != $password)
 	{
-		die("パスワードが間違っています。");
-		// $view['error_message'] = "パスワードが間違っています。";
-		// return $view;
+		$view['errorMessage'] = "パスワードが間違っています。";
+		return $view;
 	}
 	
 	$_SESSION['isLoginned'] = true;

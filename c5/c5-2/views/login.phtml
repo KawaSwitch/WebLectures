@@ -5,6 +5,9 @@
 	<body>
 		<center>
 			<h1>アルバイト入力用ログイン</h1>
+			<font color="red">
+				<?= nl2br(htmlspecialchars($view['errorMessage'])) ?>
+			</font>
 			<form method="POST" action="index.php?event=checkLogin">
 				ユーザ名:<input type="text" name="username"><br>
 				パスワード:<input type="password" name="password"><br><br>

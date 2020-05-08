@@ -9,6 +9,7 @@
 
 	// ビューデータの準備
 	$view = array();
+	$view['errorMessage'] = '';
 
 	// イベントの取得
 	$event = 'showLoginPage';
@@ -19,42 +20,64 @@
 		$event = 'showLoginPage';
 
 	// イベントに応じたアクションの選択・実行
-	switch ($event)
+	while (!is_null($event))
 	{
-		case 'logout':
-			logout();
-		case 'showLoginPage':
-			require './views/login.phtml';
-		break;
+		$nextEvent = null;
 
-		case 'checkLogin':
-			$view = checkLogin($view);
-		case 'showInputPage':
-			$view = prepareInput($view);
-			require './views/input.phtml';
-		break;
+		switch ($event)
+		{
+			case 'logout':
+				logout();
+				$view['errorMessage'] = '';
+				$nextEvent = 'showLoginPage';
+			break;
 
-		case 'showInputPage':
-			$view = prepareInput($view);
-			require './views/input.phtml';
-		break;
+			case 'showLoginPage':
+				$view = prepareLogin($view);
+				require './views/login.phtml';
+			break;
+	
+			case 'checkLogin':
+				$view = checkLogin($view);
+				if ($view['errorMessage'] == '')
+				{
+					$nextEvent = 'showInputPage';
+				}
+				else
+				{
+					$nextEvent = 'showLoginPage';
+				}
+			break;
 
-		case 'receiveInput':
-			$view = receiveInput($view);
-			require './views/confirmInput.phtml';
-		break;
+			case 'showInputPage':
+				$view = prepareInput($view);
+				require './views/input.phtml';
+			break;
+	
+			case 'showInputPage':
+				$view = prepareInput($view);
+				require './views/input.phtml';
+			break;
+	
+			case 'receiveInput':
+				$view = receiveInput($view);
+				require './views/confirmInput.phtml';
+			break;
+	
+			case 'fixInput':
+				$view = fixInput($view);
+				require './views/savedResult.phtml';
+			break;
+	
+			case 'showAll':
+				$view = loadAll($view);
+				require './views/showAll.phtml';
+			break;
+	
+			default:
+				die("イベント($event)は未定義です。");
+		}
 
-		case 'fixInput':
-			$view = fixInput($view);
-			require './views/savedResult.phtml';
-		break;
-
-		case 'showAll':
-			$view = loadAll($view);
-			require './views/showAll.phtml';
-		break;
-
-		default:
-			die("イベント($event)は未定義です。");
+		$event = $nextEvent;
 	}
 ?>
