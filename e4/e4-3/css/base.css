@@ -19,6 +19,7 @@ body {
 	background-color:#F6F6F4;
 	font-family: 'ヒラギノ角ゴ','Hiragino Kaku Gothic Pro','メイリオ',Meiryo,sans-serif;
 	font-weight: bold;
+	margin: 0;
 }
 
 h2 {
@@ -116,4 +117,8 @@ ul li::before {
 }
 .float-right {
 	float: right;
+}
+
+.error {
+	color: red;
 }

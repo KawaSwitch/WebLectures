@@ -20,8 +20,8 @@
 <html>
 	<head>
 		<meta charset=utf-8>
-		<link rel="stylesheet" type="text/css" href="base.css">
-		<link rel="stylesheet" type="text/css" href="questionnaire.css">
+		<link rel="stylesheet" type="text/css" href="css/base.css">
+		<link rel="stylesheet" type="text/css" href="css/questionnaire.css">
 		<title>アンケート調査の入力確認画面</title>
 	</head>
 	
@@ -40,13 +40,13 @@
 			名前: <?= htmlspecialchars($view['name']) ?> <br>
 			性別: <?= htmlspecialchars($view['gender']) ?> <br>
 
-			<h3>#1. あなたはスプラトゥーンを知っていますか？</h3>
+			<h3>1. あなたはスプラトゥーンを知っていますか？</h3>
 			<div class="splatoon"><?= htmlspecialchars($view['known']) ?></div> <br>
 
-			<h3>#2. スプラトゥーンをプレイしたことはありますか？</h3>
+			<h3>2. スプラトゥーンをプレイしたことはありますか？</h3>
 			<div class="splatoon"><?= htmlspecialchars($view['played']) ?></div> <br>
 
-			<h3>#3. イカとタコはどちらが好みですか？</h3>
+			<h3>3. イカとタコはどちらが好みですか？</h3>
 			<div class="splatoon">
 				<figure>
 					<img class="" src=<?= $kind_img_path[$view['kind']] ?>>
@@ -54,7 +54,7 @@
 				</figure>
 			</div>
 
-			<h3>#4. 強いと思う（もしくは強そうな）シャケを選んでください</h3>
+			<h3>4. 強いと思う（もしくは強そうな）シャケを選んでください</h3>
 			<?php
 				if ($view['salmonid'] == '選択なし')
 					print('選択なし'."\n");
@@ -75,7 +75,7 @@
 				}
 			?>
 
-			<h3>#5. スプラトゥーンに対する意見をお聞かせください</h3>
+			<h3>5. スプラトゥーンに対する意見をお聞かせください</h3>
 			<?= htmlspecialchars($view['opinion']) ?> <br>
 
 			<!-- 画面遷移 -->

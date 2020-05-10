@@ -1,19 +1,35 @@
 <html>
 	<head>
+		<meta charset=utf-8>
+		<link rel="stylesheet" type="text/css" href="css/base.css">
+		<link rel="stylesheet" type="text/css" href="css/questionnaire.css">
 		<title>アンケート回答用ログイン</title>
 	</head>
 
 	<body>
-		<center>
-			<h1>アンケート入力用ログイン</h1>
-			<font color="red">
-				<?= nl2br(htmlspecialchars($view['error_message'])) ?>
-			</font>
-			<form method="POST" action="index.php?event=checkLogin">
-				ユーザ名:<input type="text" name="username"><br>
-				パスワード:<input type="password" name="password"><br><br>
-				<input type="submit" value="ログイン">
+		<header>
+			<div class='header-inner'>
+				Questionnaire
+			</div>
+		</header>
+		
+		<div id="contents">
+			<form class="q-submit" method="POST" action="index.php?event=checkLogin">
+				<div class="login-container">
+					<p class="error">
+						<?= nl2br(htmlspecialchars($view['error_message'])) ?>
+					</p>
+					<div class="input-container">
+						<p>ユーザ名</p>
+						<input type="text" name="username" placeholder="ユーザ名" required autoforcus>
+					</div>
+					<div class="input-container">
+						<p>パスワード</p>
+						<input type="password" name="password" placeholder="パスワード" required>
+					</div>
+				</div><br>
+				<input class="submit" type="submit" value="ログイン">
 			</form>
-		</center>
+		</div>
 	</body>
 </html>

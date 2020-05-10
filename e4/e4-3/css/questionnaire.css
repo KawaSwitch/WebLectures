@@ -1,12 +1,16 @@
 @font-face {
 	font-family: "ikamodoki";
-	src: url("./font/ikamodoki/ikamodoki1_0.eot") format("embedded-opentype"),
-	url("./font/ikamodoki/ikamodoki1_0.ttf") format("truetype"); 
+	src: url("../font/ikamodoki/ikamodoki1_0.eot") format("embedded-opentype"),
+	url("../font/ikamodoki/ikamodoki1_0.ttf") format("truetype"); 
 }
 
 p {
 	font-size: 18px;
 	color: #494949;
+}
+
+h1 {
+	text-align: center;
 }
 
 h3 {
@@ -17,6 +21,17 @@ h3 {
 	margin-top: 30px;
 	margin-bottom: 15px;
 	clear: both;
+}
+
+.question h3:before {
+	font-family: "Font Awesome 5 Free";
+	font-weight: bold;
+	content: "\f00c";
+	margin-right: 10px;
+	margin-left: 0px;
+	position: relative;
+	font-size: 1em;
+	color: #ff8615;
 }
 
 input, textarea {
@@ -46,14 +61,14 @@ img {
 }
 
 .question {
-	margin-top: 40px;
+	margin-top: 50px;
 }
 
 .q-submit {
 	text-align: center;
 }
 .submit {
-	margin-top: 20px;
+	margin: 20px auto;
 	width: 350px;
 	background-color: #dee7ec;
 	color: #003a5c;
@@ -252,4 +267,11 @@ img {
 	color: #ec3f9f;
 }
 
-/* テーブル */
+.login-container {
+	display: inline-block;
+	text-align: left;
+}
+
+.input-container p {
+	margin: 0 auto; /* 上下の隙間を無くす目的 */
+}
