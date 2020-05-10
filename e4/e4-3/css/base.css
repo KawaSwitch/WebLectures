@@ -119,6 +119,6 @@ ul li::before {
 	float: right;
 }
 
-.error {
+.error, .required {
 	color: red;
 }

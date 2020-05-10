@@ -55,6 +55,10 @@ img {
 	width: 150px;
 }
 
+.pre-question p {
+	margin: 0;
+}
+
 .answer {
 	font-size: 25px;
 	font-family: 'ikamodoki','Hiragino Kaku Gothic Pro','ヒラギノ角ゴ Pro W3','メイリオ',Meiryo,'ＭＳ Ｐゴシック',sans-serif;

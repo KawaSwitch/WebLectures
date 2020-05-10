@@ -18,24 +18,27 @@
 			<h2>スプラトゥーンに関するアンケート</h2>
 
 			<form method="POST" action="index.php?event=receiveInput">
-				お名前（ニックネームも可）:<br>
-				<input type="text" name="name" value="<?= htmlspecialchars($view['name']) ?>"> <br>
-				性別:
-				<div class="select-gender">
-					<input type="radio" name="gender" id="male" class="male" value="男性" <?= $view['gender_checked']['男性'] ?> />
-					<label for="male">
-						<i class="fas fa-male male"></i> 男性
-					</label>
-					<input type="radio" name="gender" id="female" class="female" value="女性" <?= $view['gender_checked']['女性'] ?> />
-					<label for="female">
-						<i class="fas fa-female female"></i> 女性
-					</label>
-					<input type="radio" name="gender" id="others" class="others" value="無回答" <?= $view['gender_checked']['無回答'] ?> />
-					<label for="others">
-						無回答
-					</label> <br><br>
+				<div class="pre-question">
+					<p>お名前（ニックネームも可）<span class="required">*</span></p>
+					<input type="text" name="name" value="<?= htmlspecialchars($view['name']) ?>" placeholder="おなまえ" required> <br>
+
+					<p>性別</p>
+					<div class="select-gender">
+						<input type="radio" name="gender" id="male" class="male" value="男性" <?= $view['gender_checked']['男性'] ?> />
+						<label for="male">
+							<i class="fas fa-male male"></i> 男性
+						</label>
+						<input type="radio" name="gender" id="female" class="female" value="女性" <?= $view['gender_checked']['女性'] ?> />
+						<label for="female">
+							<i class="fas fa-female female"></i> 女性
+						</label>
+						<input type="radio" name="gender" id="others" class="others" value="無回答" <?= $view['gender_checked']['無回答'] ?> />
+						<label for="others">
+							無回答
+						</label> <br><br>
+					</div>	
 				</div>
-				
+
 				<div class="question">
 					<h3>1. あなたはスプラトゥーンを知っていますか？</h3>
 					<div class="answer radio-box">

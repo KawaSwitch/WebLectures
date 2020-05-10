@@ -38,7 +38,7 @@ function prepareInput($view)
 
 	// 既入力データが存在するならセッションから復元する
 	// 文字列の復元
-	$view['name'] = (isset($_SESSION['name'])) ? $_SESSION['name'] : 'なまえ';
+	$view['name'] = (isset($_SESSION['name'])) ? $_SESSION['name'] : '';
 
 	if (isset($_SESSION['opinion']) && $_SESSION['opinion'] == '記述なし')
 		$view['opinion'] = 'ご自由にどうぞ';
