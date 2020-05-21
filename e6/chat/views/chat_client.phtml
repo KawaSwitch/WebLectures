@@ -31,10 +31,10 @@
 					return;
 
 				// ログイン時の名前と一緒に送信
-				var name = "<?php echo $view['username']; ?>";
+				var name = "<?php echo htmlspecialchars($view['username']); ?>";
 				ws.send(name + '> ' + val);
 
-				// 送信後はinput内のテキストを削除
+				// 送信後はチャットテキスト内のテキストを削除
 				document.submit_form.chattext.value = '';
 			}
 
