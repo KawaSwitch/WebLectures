@@ -13,6 +13,8 @@
 *.pdf
 *.zip
 *.csv
+*.lock
+vendor/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

@@ -1,0 +1,19 @@
+<html>
+	<head>
+		<title>チャット用ログイン</title>
+	</head>
+	<body>
+		<center>
+			<h1>チャット用ログイン</h1>
+			<h2>登録不要！</h2>
+			<font color="red">
+				<?= nl2br(htmlspecialchars($view['errorMessage'])) ?>
+			</font>
+			<form method="POST" action="index.php?event=checkLogin">
+				<!-- required属性により必ず値が入る -->
+				ユーザ名:<input type="text" name="username" placeholder="ニックネーム" required><br><br>
+				<input type="submit" value="ログイン">
+			</form>
+		</center>
+	</body>
+</html>

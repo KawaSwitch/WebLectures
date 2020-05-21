@@ -1,0 +1,28 @@
+<html>
+	<head>
+		<script src="https://apis.google.com/js/platform.js" async defer></script>
+		<meta name="google-signin-client_id" content="996090197467-8jope8j70juid4kuoesaaoupkleh73n0.apps.googleusercontent.com">
+	</head>
+	<body>
+		<div class="g-signin2" data-onsuccess="onSignIn"></div>
+		<script>
+			function onSignIn(googleUser) {
+				var profile = googleUser.getBasicProfile();
+				console.log('ID: ' + profile.getId());
+				console.log('Name: ' + profile.getName());
+				console.log('Image URL: ' + profile.getImageUrl());
+				console.log('Email: ' + profile.getEmail());
+
+				var id_token = googleUser.getAuthResponse().id_token;
+				var xhr = new XMLHttpRequest();
+				xhr.open('POST', 'test.php');
+				xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+				xhr.onload = function() {
+					console.log('Signed in as: ' + xhr.responseText);
+				};
+				xhr.send('idtoken=' + id_token);
+				window.location.href = 'index.php';
+			}
+		</script>
+	</body>
+</html>
