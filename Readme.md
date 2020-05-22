@@ -29,10 +29,25 @@ c6: WebSocket, ブロードキャスト
 e6: ログイン付きチャットの実装  
 
 ## 第7回 (5/22)
-c7: LOD課題基礎, OpenAPI基礎(Google Trends)  
+c7: LOD課題基礎, OpenAPI基礎(Google Trends, YouTube)  
 e7: LOD課題応用, OpenAPI応用(Google Trends)  
-なお, Google Trendsの実行には下記ライブラリのインストールが必要  
-https://github.com/x-fran/g-trends  
+
+Google Trends, YouTubeのAPIを使う際にはライブラリのインストールが必要  
+Composerとcomposer.jsonを使うと楽  
+
+### composer.json
+```
+{
+    "require": {
+        "google/apiclient": "^2.4",
+        "x-fran/g-trends": "^2.2"
+    }
+}
+```
+同ディレクトリで下記コマンドを実行  
+```
+composer install
+```
 
 ## 最終課題 (6/5〆)
 final: 自由課題  
