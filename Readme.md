@@ -29,8 +29,10 @@ c6: WebSocket, ブロードキャスト
 e6: ログイン付きチャットの実装  
 
 ## 第7回 (5/22)
-c7: LOD課題基礎  
-e7: LOD課題応用  
+c7: LOD課題基礎, OpenAPI基礎(Google Trends)  
+e7: LOD課題応用, OpenAPI応用(Google Trends)  
+なお, Google Trendsの実行には下記ライブラリのインストールが必要  
+https://github.com/x-fran/g-trends  
 
 ## 最終課題 (6/5〆)
 final: 自由課題  
