@@ -74,21 +74,23 @@
 
 			<!-- モーダル -->
 			<div class="upload-modal-wrapper" id="upload-modal">
-				<div class="modal">
-					<div>
-						<i class="fa fa-2x fa-times close-modal"></i>
-					</div>
-					
-					<div id="upload-form">
-						<h2>イカした画像をシェアしよう！</h2>
+				<div class="modal-container">
+					<div class="modal">
+						<div>
+							<i class="fa fa-2x fa-times close-modal"></i>
+						</div>
+						
+						<div id="upload-form">
+							<h2>イカした画像をシェアしよう！</h2>
 
-						<form action="index.php?event=upload" method="POST" enctype="multipart/form-data">
-							<input type="file" id="select-images" name="capture[]" accept="image/*" multiple="multiple" />
-							<input type="submit" id="submit-images" class="splatoon" value="アップロード" />
-						</form>
+							<form action="index.php?event=upload" method="POST" enctype="multipart/form-data">
+								<input type="file" id="select-images" name="capture[]" accept="image/*" multiple="multiple" />
+								<input type="submit" id="submit-images" class="splatoon" value="アップロード" />
+							</form>
 
-						<p>トップページの背景に表示されることがあるよ</p>
-						<p>不快な思いをさせないような画像を選んでね</p>
+							<p>トップページの背景に表示されることがあるよ</p>
+							<p>不快な思いをさせないような画像を選んでね</p>
+						</div>
 					</div>
 				</div>
 			</div>
