@@ -1,0 +1,304 @@
+@font-face {
+	font-family: "ikamodoki";
+	src: url("../font/ikamodoki/ikamodoki1_0.eot") format("embedded-opentype"),
+	url("../font/ikamodoki/ikamodoki1_0.ttf") format("truetype"); 
+}
+
+p {
+	font-size: 18px;
+	color: #494949;
+}
+
+h1 {
+	text-align: center;
+}
+
+h3 {
+	padding: 0.25em 0.5em;
+	color: #494949;
+	background: transparent;
+	border-left: solid 5px #ffb561; /* 左線 */
+	margin-top: 30px;
+	margin-bottom: 15px;
+	clear: both;
+}
+
+.question h3:before {
+	font-family: "Font Awesome 5 Free";
+	font-weight: bold;
+	content: "\f00c";
+	margin-right: 10px;
+	margin-left: 0px;
+	position: relative;
+	font-size: 1em;
+	color: #ff8615;
+}
+
+input, textarea {
+	width: 400px;
+	margin-top: 10px;
+	margin-bottom: 30px;
+	padding: 10px;
+	font-size: 16px;
+	border: 1px solid #dee7ec;
+	box-sizing:border-box;
+	-moz-box-sizing:border-box; /* Firefox */
+	-webkit-box-sizing:border-box; /* Chrome, Safari */
+}
+textarea {
+	width: 800px;
+	height: 100px;
+}
+
+form {
+	margin-top: 20px;
+}
+
+img {
+	width: 150px;
+}
+
+.pre-question p {
+	margin: 0;
+}
+
+.answer {
+	font-size: 25px;
+	font-family: 'ikamodoki','Hiragino Kaku Gothic Pro','ヒラギノ角ゴ Pro W3','メイリオ',Meiryo,'ＭＳ Ｐゴシック',sans-serif;
+}
+
+.question {
+	margin-top: 50px;
+}
+
+.q-submit {
+	text-align: center;
+}
+.submit {
+	margin: 20px auto;
+	width: 350px;
+	height: 45px;
+	background-color: #dee7ec;
+	border-radius: 5px;
+	color: #003a5c;
+	font-size: 16px;
+}
+.submit:hover {
+	background-color: #d0dfe7;
+}
+
+.friend-submit {
+	margin-top: 20px;
+	width: 350px;
+	background-color: #fadba0;
+	border-color: #fadba0;
+	border-radius: 5px;
+	color: #ff5100;
+	font-size: 16px;
+	font-weight: bold;
+	height: 45px;
+}
+.friend-submit:hover {
+	background-color: #f8d38e;
+}
+
+.blued {
+	background-color: #d0e6fd;
+	border-color: #c1dfff;
+	color: #0a36fc;
+}
+.blued:hover {
+	background-color: #b6d9ff;
+}
+
+.reded {
+	background-color: #f7d2c7;
+	border-color: #f7d2c7;
+	color: #fd1d1d;
+}
+.reded:hover {
+	background-color: #fcc3b1;
+}
+
+input[type="submit"][disabled]{
+	background-color: #c4c4c4 !important;
+	border-color: #c4c4c4!important;
+	color: #444444 !important;
+    cursor:not-allowed; /* 禁止カーソル */
+}
+
+.pie-chart {
+	text-align: center;
+	height: 300px;
+	width: 80%;
+	margin: 50px auto;
+}
+
+.bar-chart {
+	text-align: center;
+	height: 500px;
+	width: 90%;
+	margin: 50px auto;
+}
+
+.splatoon {
+	font-size: 22px;
+	font-family: 'ikamodoki','Hiragino Kaku Gothic Pro','ヒラギノ角ゴ Pro W3','メイリオ',Meiryo,'ＭＳ Ｐゴシック',sans-serif;
+}
+
+.attention-center {
+	text-align: center;
+	color: #ff3300;
+	font-size: 40px;
+}
+
+.border-radius {
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+}
+
+.str-answer-box {
+	height: 40px;
+}
+
+/* 画像のラジオボタン */
+.radio-box {
+	display: flex;
+	flex-wrap: wrap;
+}
+.radio-box img {
+	width: 200px;
+}
+.radio-box .answer-container {
+	flex: auto;
+	width: 50%;
+	/* 中身の中央寄せ */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	box-sizing: border-box;
+	/* 丸みをつける */
+	border-radius: 20px;
+    -webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+}
+.radio-box input {
+	display: none;
+}
+.radio-box figure {
+	margin: 0 auto;
+}
+.radio-box input[type="radio"] + label {
+	border: 2px solid #ffffff;
+}
+.radio-box input[type="radio"]:hover + label {
+	background-color: #eef6ff;
+	border: 2px solid #bcd9f8;
+	cursor: pointer;
+}
+.radio-box input[type="radio"]:checked + label {
+	color: #fc2e0a;
+	background-color: #d0e6fd;
+	border: 2px solid #3275bc;
+}
+
+/* 画像のチェックボックス */
+.select-box {
+	display: flex;
+	flex-wrap: wrap;
+}
+.select-box::after{
+	/* 3つ横並びで中央揃えの際に綺麗に並べる */
+	content: "";
+	display: block;
+	width: 30%;
+}
+.select-box img {
+	width: 220px;
+}
+.select-box figure {
+	padding: 10px;
+	margin: 0 auto;
+	/* 丸みをつける */
+	border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+}
+.select-box .answer-container {
+	flex: auto;
+	flex-direction: row;
+	width: 32%;
+	margin: 2px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.select-box input {
+	display: none;
+}
+.select-box input[type="checkbox"] + figure {
+	border: 2px solid #ffffff;
+}
+.select-box input[type="checkbox"]:hover + figure {
+	background-color: #eef6ff;
+	border: 2px solid #bcd9f8;
+	cursor: pointer;
+}
+.select-box input[type="checkbox"]:checked + figure {
+	color: #fc2e0a;
+	background-color: #d0e6fd;
+	border: 2px solid #3275bc;
+}
+
+/* 文字のチェックボックス */
+.select-gender input {
+	display: none;
+}
+.select-gender input[type="radio"]:checked.male + label {
+	color: #3275bc;
+	border: 2px solid #3275bc;
+	background-color: #d0e6fd;
+}
+.select-gender input[type="radio"]:checked.female + label {
+	color: #ee41c3;
+	border: 2px solid #ce30b9;
+	background-color: #fad9f4;
+}
+.select-gender input[type="radio"]:checked.others + label {
+	color: #bf9701;
+	border: 2px solid #bf9701;
+	background-color: #fbf4dc;
+}
+.select-gender label {
+	color: #ddd;
+	border: 2px solid #ddd;
+	text-align: center;
+	font-size: 17px;
+	display: inline-block;
+	padding: 5px 0px;
+	margin-top: 5px;
+	margin-right: 5px;
+	width: 120px;
+}
+.select-gender label:hover {
+	color: #aaa;
+	border: 2px solid #aaa;
+	cursor: pointer;
+}
+
+.male {
+	color: #3275bc;
+}
+.female {
+	color: #ec3f9f;
+}
+
+.login-container {
+	display: inline-block;
+	text-align: left;
+}
+
+.input-container p {
+	margin: 0 auto; /* 上下の隙間を無くす目的 */
+}

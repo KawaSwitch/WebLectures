@@ -1,0 +1,96 @@
+<?php
+	// とりあえずここ
+	$kind_img_path = array(
+		'イカ' => './images/inkling.png',
+		'タコ' => './images/octoling.png',
+	);
+	$salmonid_img_path = array(
+		'ザコシャケ' => './images/boss_salmonids/lesser_salmonids.png',
+		'タマヒロイ' => './images/boss_salmonids/snatcher.png',
+		'コウモリ' => './images/boss_salmonids/drizzler.png',
+		'カタパッド' => './images/boss_salmonids/flyfish.png',
+		'モグラ' => './images/boss_salmonids/maws.png',
+		'テッパン' => './images/boss_salmonids/scrapper.png',
+		'ヘビ' => './images/boss_salmonids/steel_eel.png',
+		'バクダン' => './images/boss_salmonids/steel_head.png',
+		'タワー' => './images/boss_salmonids/stinger.png',
+	);
+?>
+
+<html>
+	<head>
+		<meta charset=utf-8>
+		<link rel="stylesheet" type="text/css" href="css/base.css">
+		<link rel="stylesheet" type="text/css" href="css/questionnaire.css">
+		<title>アンケート調査の入力確認画面</title>
+	</head>
+	
+	<body>
+		<header>
+			<div class='header-inner'>
+				Questionnaire
+			</div>
+		</header>
+
+		<div id="contents">
+			<p>
+				回答内容を確認してください<br>
+			</p>
+
+			名前: <?= htmlspecialchars($view['name']) ?> <br>
+			性別: <?= htmlspecialchars($view['gender']) ?> <br>
+
+			<h3>1. あなたはスプラトゥーンを知っていますか？</h3>
+			<div class="splatoon"><?= htmlspecialchars($view['known']) ?></div> <br>
+
+			<h3>2. スプラトゥーンをプレイしたことはありますか？</h3>
+			<div class="splatoon"><?= htmlspecialchars($view['played']) ?></div> <br>
+
+			<h3>3. イカとタコはどちらが好みですか？</h3>
+			<div class="splatoon">
+				<figure>
+					<img class="" src=<?= $kind_img_path[$view['kind']] ?>>
+					<figcaption><?= htmlspecialchars($view['kind']) ?></figcaption>
+				</figure>
+			</div>
+
+			<h3>4. 強いと思う（もしくは強そうな）シャケを選んでください</h3>
+			<?php
+				if ($view['salmonid'] == '選択なし')
+					print('選択なし'."\n");
+				else
+				{ ?>
+					<div class="select-box splatoon">
+					<?php
+						foreach (explode(' / ', $view['salmonid']) as $salmonid_name)
+						{
+							print('<figure>'."\n");
+							print('<img class="answering-container" src='.$salmonid_img_path[$salmonid_name].'>'."\n");
+							print('<figcaption>'.$salmonid_name.'</figcaption>'."\n");
+							print('</figure>'."\n");
+						}
+					?>
+					</div>
+				<?php
+				}
+			?>
+
+			<h3>5. スプラトゥーンに対する意見をお聞かせください</h3>
+			<?= htmlspecialchars($view['opinion']) ?> <br>
+
+			<!-- 画面遷移 -->
+			<div class="flex-wrapper">
+				<div class='q-submit'>
+					<form method="POST" action="index.php?event=showInputPage">
+						<input class="submit" type="submit" value="入力画面に戻る">
+					</form>
+				</div>
+				<div class='q-submit'>
+					<form method="POST" action="index.php?event=fixInput">
+						<input class="friend-submit reded" type="submit" value="この内容でOK！">
+					</form>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

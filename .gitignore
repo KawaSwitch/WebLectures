@@ -14,6 +14,9 @@
 *.zip
 *.csv
 *.lock
+*.png
+*.jpg
+*.tif
 vendor/
 
 # Byte-compiled / optimized / DLL files

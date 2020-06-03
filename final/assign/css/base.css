@@ -1,0 +1,140 @@
+
+/* ヘッダ */
+header {
+	height: 50px; /* ヘッダ部分の高さ */
+	background: #55C500;
+	/* background-image: url("header.jpg"); */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.header-inner {
+	color: #ffffff;
+	font-size:22px;
+	font-family: 'Hiragino Kaku Gothic Pro','ヒラギノ角ゴ Pro W3','メイリオ',Meiryo,'ＭＳ Ｐゴシック',sans-serif;
+	font-weight: bold;
+}
+
+body {
+	background-color:#F6F6F4;
+	font-family: 'ヒラギノ角ゴ','Hiragino Kaku Gothic Pro','メイリオ',Meiryo,sans-serif;
+	font-weight: bold;
+	margin: 0;
+}
+
+h2 {
+	padding: 0.25em 0.5em;
+	color: #494949;
+	background: transparent;
+	border-left: solid 5px #7db4e6; /* 左線 */
+	margin-top: 30px;
+	margin-bottom: 15px;
+	clear: both;
+}
+
+#contents { 
+	background-color:#ffffff;
+	color : #000000;
+	margin-right: auto; /* 中央寄せ */
+	margin-left : auto;
+	padding: 20px;
+	width: 800px;
+}
+
+#main {
+	font-size: 18px;
+}
+
+.title {
+	font-size:18px;
+	font-weight: bold;
+}
+
+.video {
+	text-align: center;
+}
+
+figure {
+	/* figcaptionを中央に */
+	text-align: center;
+	display: table;
+	width: 1px;
+	margin: 0px 0px;
+}
+.image-box {
+	float: left;
+	padding-right: 20px;
+}
+img {
+	width: 380px;
+}
+
+.emphasis {
+	color: red;
+	font-weight: bold;
+}
+
+.clearfix {
+	zoom: 1;
+}
+.clearfix:after {
+	content: "";
+	display: block;
+	clear: both;	
+}
+
+ul, ol {
+	padding: 0;
+}
+
+ul li {
+	position: relative;
+	list-style-type: none; /* ポチ消す */
+	padding: 0.5em 0.5em 0.5em 0.5em;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	line-height: 1.5;
+	background: #dbebf8;
+	vertical-align: middle;
+	color: #505050;
+	border-radius: 15px 0px 0px 15px; /* 左側の角丸く */
+}
+
+ul li::before { 
+	display:inline-block; 
+	vertical-align: middle;
+	/* 以下, 白丸用 */
+	content:'';
+	width:1em;
+	height: 1em;
+	background: #fff;
+	border-radius: 50%;
+	margin-right: 8px;
+}
+
+.float-left {
+	float: left;
+}
+.float-right {
+	float: right;
+}
+
+.error, .required {
+	color: red;
+}
+
+.flex-wrapper {
+	display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+	display: flex;
+}
+.flex-wrapper * {
+	flex: auto;
+}
+
+.btn {
+	display: inline-block;
+	margin: 10px;
+}

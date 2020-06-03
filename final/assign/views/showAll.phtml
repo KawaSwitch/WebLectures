@@ -1,0 +1,139 @@
+<html>
+	<head>
+		<meta charset='utf-8'>
+		<link rel="stylesheet" type="text/css" href="css/base.css">
+		<link rel="stylesheet" type="text/css" href="css/questionnaire.css">
+		<link rel="stylesheet" type="text/css" href="css/modal.css">
+		<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+		<script src="js/chart.js"></script>
+		<script src="js/modal.js"></script>
+		
+		<title>みんなのアンケート調査の結果</title>
+
+		<script>
+			window.onload = function() 
+			{
+				var charts = [
+					createPieChart('gender_chart', '回答者の性別比', <?php echo json_encode($view['data_points_list'][0], JSON_NUMERIC_CHECK); ?>),
+					createPieChart('known_chart', '#1. あなたはスプラトゥーンを知っていますか？', <?php echo json_encode($view['data_points_list'][1], JSON_NUMERIC_CHECK); ?>),
+					createPieChart('played_chart', '#2. スプラトゥーンをプレイしたことはありますか？', <?php echo json_encode($view['data_points_list'][2], JSON_NUMERIC_CHECK); ?>),
+					createPieChart('kind_chart', '#3. イカとタコはどちらが好みですか？', <?php echo json_encode($view['data_points_list'][3], JSON_NUMERIC_CHECK); ?>),
+					createBarChart('salmonid_chart', '#4. 強いと思う（もしくは強そうな）シャケを選んでください', '投票数', '種類', <?php echo json_encode($view['data_points_list'][4], JSON_NUMERIC_CHECK); ?>)
+				];
+
+				charts.forEach(function(chart) { chart.render(); });		
+			}
+		</script>
+		<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+	</head>
+	
+	<body>
+
+		<header>
+			<div class='header-inner'>
+				Questionnaire
+			</div>
+		</header>
+
+		<div id="contents">
+			<h3>みんなの回答結果</h3>
+
+			<!-- グラフ表示 -->
+			<div id="gender_chart" class="pie-chart"></div>
+			<div id="known_chart" class="pie-chart"></div>
+			<div id="played_chart" class="pie-chart"></div>
+			<div id="kind_chart" class="pie-chart"></div>
+			<div id="salmonid_chart" class="bar-chart"></div>
+
+			<!-- 意見 -->
+			<h3>みんなのスプラトゥーンに関する意見</h3>
+			<p>
+				<ul>
+					<?php
+						$valid_ans = array();
+						foreach ($view['answers'] as $answer)
+						{
+							if (strcmp(rtrim($answer['opinion']), '記述なし'))
+								array_push($valid_ans, $answer['opinion']);					
+						}
+
+						if (count($valid_ans) == 0)
+							echo '意見はまだありませんでした。';
+						else
+						{
+							// 意見があれば最新の5つを表示する
+							$cnt = count($valid_ans);
+							for ($i = $cnt; $i > ($cnt-5 > 0 ? $cnt-5 : 0); $i--)
+							{?>
+								<li>
+									<?php echo htmlspecialchars($valid_ans[$i - 1]); ?>
+								</li>
+								<?php
+							}
+							echo 'など';
+						}
+					?>
+				</ul>
+			</p>
+
+			<h3>結果のシェア</h3>
+			
+			<!-- シェア -->
+			<div class="sns q-submit">
+				<!-- Twitter -->
+				<div class="btn">
+					<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-text="スプラトゥーンアンケート調査！君も回答してみよう！回答したらみんなの結果が見れるよ！" data-url="http://localhost/lectures/final/assign/index.php" data-hashtags="スプラトゥーンアンケート" data-show-count="false">Tweet</a>
+					<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+				</div>
+				<!-- Facebook -->
+				<div class="btn">
+				<iframe src="https://www.facebook.com/plugins/share_button.php?href=http%3A%2F%2Flocalhost%2Flectures%2Ffinal%2Fassign%2Findex.php&layout=button&size=large&width=79&height=28&appId" width="79" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+				</div>
+				<!-- Line -->
+				<div class="btn">
+					<div class="line-it-button" data-lang="ja" data-type="share-a" data-ver="3" data-url="http://localhost/lectures/final/assign/index.php" data-color="default" data-size="large" data-count="false" style="display: none;"></div>
+					<script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
+				</div>
+				<!-- はてぶ -->
+				<div class="btn">
+					<a href="https://b.hatena.ne.jp/entry/localhost/lectures/final/assign/index.php" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-label" data-hatena-bookmark-lang="ja" data-hatena-bookmark-height="31" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/v4/public/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+				</div>
+			</div>
+
+			<!-- DL / UP -->
+			<div class="flex-wrapper">
+				<div class="q-submit">
+					<form method="POST" action="index.php?event=download">
+						<input id="share-show" class="friend-submit fas" type="submit" value="&#xf019; 結果をCSVでダウンロード">
+					</form>
+				</div>
+				<div class="q-submit">
+					<form action="">
+						<input id="upload-show" class="friend-submit blued fas" type="button" value="&#xf093; イカした画像をアップロード">
+					</form>
+				</div>
+			</div>
+
+			<!-- モーダル -->
+			<div class="upload-modal-wrapper" id="upload-modal">
+				<div class="modal">
+					<div>
+						<i class="fa fa-2x fa-times close-modal"></i>
+					</div>
+					
+					<div id="upload-form">
+						<h2>イカした画像をシェアしよう！</h2>
+
+						<form action="index.php?event=upload" method="POST" enctype="multipart/form-data">
+							<input type="file" id="select-images" name="capture[]" accept="image/*" multiple="multiple" />
+							<input type="submit" id="submit-images" class="splatoon" value="アップロード" />
+						</form>
+
+						<p>トップページの背景に表示されることがあるよ</p>
+						<p>不快な思いをさせないような画像を選んでね</p>
+					</div>
+				</div>
+			</div>
+	</body>
+</html>

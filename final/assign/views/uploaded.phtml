@@ -1,0 +1,97 @@
+<html>
+	<head>
+		<meta charset=utf-8>
+		<link rel="stylesheet" type="text/css" href="css/base.css">
+		<link rel="stylesheet" type="text/css" href="css/questionnaire.css">
+		<link rel="stylesheet" type="text/css" href="css/modal.css">
+		<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+		<script src="js/modal.js"></script>
+		<title>アップロードの完了</title>
+	</head>
+	
+	<body>
+		<header>
+			<div class='header-inner'>
+				Questionnaire
+			</div>
+			<div id='menu'>
+				<div class='logout-container'>
+					<form method="POST" action="index.php?event=logout">
+						<input class="logout" type="submit" value="ログアウト">
+					</form>
+				</div>
+			</div>
+		</header>
+
+		<div id="contents">
+			<!-- アラートでアップロードメッセージを表示 -->
+			<script type="text/javascript">
+				var msg = "アップロード結果\n" + "<?php echo htmlspecialchars($view['upload_message']); ?>";
+				alert(msg);
+			</script>
+
+			<p class="attention-center splatoon">
+				アップロードありがとう！<br>
+				シェアもよろしくね！
+			</p>
+
+			<!-- シェア -->
+			<div class="sns q-submit">
+				<!-- Twitter -->
+				<div class="btn">
+					<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-text="スプラトゥーンアンケート調査！君も回答してみよう！回答したらみんなの結果が見れるよ！" data-url="http://localhost/lectures/final/assign/index.php" data-hashtags="スプラトゥーンアンケート" data-show-count="false">Tweet</a>
+					<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+				</div>
+				<!-- Facebook -->
+				<div class="btn">
+				<iframe src="https://www.facebook.com/plugins/share_button.php?href=http%3A%2F%2Flocalhost%2Flectures%2Ffinal%2Fassign%2Findex.php&layout=button&size=large&width=79&height=28&appId" width="79" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+				</div>
+				<!-- Line -->
+				<div class="btn">
+					<div class="line-it-button" data-lang="ja" data-type="share-a" data-ver="3" data-url="http://localhost/lectures/final/assign/index.php" data-color="default" data-size="large" data-count="false" style="display: none;"></div>
+					<script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
+				</div>
+				<!-- はてぶ -->
+				<div class="btn">
+					<a href="https://b.hatena.ne.jp/entry/localhost/lectures/final/assign/index.php" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-label" data-hatena-bookmark-lang="ja" data-hatena-bookmark-height="31" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/v4/public/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+				</div>
+			</div>
+
+			<!-- DL / UP -->
+			<div class="flex-wrapper">
+				<div class="q-submit">
+					<form method="POST" action="index.php?event=showAll">
+						<input class="submit" type="submit" value="みんなの結果に戻る">
+					</form>
+				</div>
+				<div class="q-submit">
+					<form action="">
+						<input id="upload-show" class="fas friend-submit blued" type="button" value="&#xf093; イカした画像をもっとアップロード">
+					</form>
+				</div>
+			</div>
+
+			<!-- モーダル -->
+			<div class="upload-modal-wrapper" id="upload-modal">
+				<div class="modal">
+					<div>
+						<i class="fa fa-2x fa-times close-modal"></i>
+					</div>
+					
+					<div id="upload-form">
+						<h2>イカした画像をシェアしよう！</h2>
+
+						<form action="index.php?event=upload" method="POST" enctype="multipart/form-data">
+							<input type="file" id="select-images" name="capture[]" accept="image/*" multiple="multiple" />
+							<input type="submit" id="submit-images" class="splatoon" value="アップロード" />
+						</form>
+
+						<p>トップページの背景に表示されることがあるよ</p>
+						<p>不快な思いをさせないような画像を選んでね</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
