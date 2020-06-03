@@ -49,6 +49,9 @@ Composerとcomposer.jsonを使うと楽
 composer install
 ```
 
+## 第7回 (5/29)
+c8: MediaCapture, Geolocation API  
+
 ## 最終課題 (6/5〆)
 final: 自由課題  
 ・WebSocketを用いたチャット機能  
