@@ -13,7 +13,7 @@ function prepareLogin($view)
 function checkLogin($view)
 {
 	// ユーザデータの設定（本課題ではハードコーディング...）
-	$userData = array('manager'=>1111, 'guest'=>2222, 'かるた'=>101656793517370583575);
+	$userData = array('manager'=>1111, 'guest'=>2222);
 	$username = "";
 	$password = "";
 
@@ -26,10 +26,10 @@ function checkLogin($view)
 		$client = new Google_Client(['client_id' => CLIENT_ID]); 
 		$client->addScope("email");
 		$payload = $client->verifyIdToken($id_token);
-		var_dump($payload);
+		
+		// 本課題ではGoogleログインではデータをチェックしない
 		if ($payload) {
 			$username = $payload['name'];
-			$password = $payload['sub'];
 		}
 	}
 	else
@@ -37,21 +37,20 @@ function checkLogin($view)
 		// ログインデータのチェック
 		$username = $_POST['username'];
 		$password = $_POST['password'];
+
+		if (!isset($userData[$username]))
+		{
+			$view['error_message'] = "ユーザ名が間違っています。";
+			return $view;
+		}
+		if ($userData[$username] != $password)
+		{
+			$view['error_message'] = "パスワードが間違っています。";
+			return $view;
+		}
 	}
 
 	$_SESSION['username'] = $username;
-
-	if (!isset($userData[$username]))
-	{
-		$view['error_message'] = "ユーザ名が間違っています。";
-		return $view;
-	}
-	if ($userData[$username] != $password)
-	{
-		$view['error_message'] = "パスワードが間違っています。";
-		return $view;
-	}
-	
 	$_SESSION['isLoginned'] = true;
 	return $view;
 }
