@@ -189,12 +189,29 @@ function upload($view)
 			// ディレクトリトラバーサル攻撃への対処
 			$name = basename($_FILES["capture"]["name"][$key]);
 
+			$name = str_replace(' ', '_', $name);
 			move_uploaded_file($tmp_name, "$uploads_dir/$name");
 			$view['upload_message'] .= $name." 成功\\n";
 		}
 		else
 		{
 			$view['upload_message'] .= "失敗\\n";
+		}
+	}
+
+	return $view;
+}
+
+function getUploadedImages($view)
+{
+	if (!isset($view['shared_images']))
+		$view['shared_images'] = array();
+
+	foreach (glob('./images/top_images/{*.jpg,*.png}', GLOB_BRACE) as $file)
+	{
+		if (is_file($file))
+		{
+			$view['shared_images'][] = str_replace(' ', '_', basename($file));
 		}
 	}
 

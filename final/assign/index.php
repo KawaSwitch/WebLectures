@@ -78,6 +78,7 @@
 	
 			case 'upload':
 				$view = upload($view);
+				$view = getUploadedImages($view);
 				require './views/uploaded.phtml';
 			break;
 

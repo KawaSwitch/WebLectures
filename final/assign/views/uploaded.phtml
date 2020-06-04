@@ -88,12 +88,21 @@
 								<input type="submit" id="submit-images" class="splatoon" value="アップロード" />
 							</form>
 
-							<p>トップページの背景に表示されることがあるよ</p>
+							<p>アンケートの色んなところに表示されることがあるよ</p>
 							<p>不快な思いをさせないような画像を選んでね</p>
 						</div>
 					</div>
 				</div>
 			</div>
+		</div>
+
+		<div class="image-area">
+			<?php
+				foreach ($view['shared_images'] as $shared_img_path)
+				{
+					print('<img class="shared-img" src=./images/top_images/'.$shared_img_path.'>'."\n");
+				}
+			?>
 		</div>
 	</body>
 </html>
