@@ -54,8 +54,8 @@ c8: MediaCapture, Geolocation API
 
 ## 最終課題 (6/5〆)
 final: 自由課題  
-・WebSocketを用いたチャット機能  
-・アンケート情報のチャットへの利用  
-・GoggleやTwitterアカウントでのログイン機能  
+・Goggleアカウントでのログイン機能  
+・MediaCaptureでのアップロード機能  
+実行にはgoogle/apiclientのインストールが必要  
 
 google: Googleアカウントでのログイン機能テスト  
