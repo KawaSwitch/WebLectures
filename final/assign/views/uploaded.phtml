@@ -96,13 +96,20 @@
 			</div>
 		</div>
 
-		<div class="image-area">
-			<?php
-				foreach ($view['shared_images'] as $shared_img_path)
-				{
-					print('<img class="shared-img" src=./images/top_images/'.$shared_img_path.'>'."\n");
-				}
-			?>
+		<div id="sub-contents">
+			<div class="image-area">
+				<div class="shared-img-container">
+
+				</div>
+				<?php
+					foreach ($view['shared_images'] as $shared_img_path)
+					{
+						print("<div class=\"shared-img-container\">"."\n");
+						print('<img class="shared-img" src=./images/top_images/'.$shared_img_path.'>'."\n");
+						print("</div>"."\n");
+					}
+				?>
+			</div>
 		</div>
 	</body>
 </html>

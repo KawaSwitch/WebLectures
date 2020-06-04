@@ -333,10 +333,14 @@ header input:hover {
 .image-area {
 	display: flex;
 	flex-wrap: wrap;
+	padding: 20px;
 }
 .image-area .shared-img {
 	flex-direction: row;
 	object-fit: contain;
 	flex-basis: 150px;
 	flex-shrink: 0;
+}
+.image-area .shared-img-container {
+	margin: 5px;
 }

@@ -180,22 +180,25 @@ function upload($view)
 	$view['upload_message'] = "";
 	$uploads_dir = './images/top_images';
 
-	foreach ($_FILES["capture"]["error"] as $key => $error)
+	if (isset($_FILES["capture"]))
 	{
-		if ($error == UPLOAD_ERR_OK) 
+		foreach ($_FILES["capture"]["error"] as $key => $error)
 		{
-			$tmp_name = $_FILES["capture"]["tmp_name"][$key];
+			if ($error == UPLOAD_ERR_OK) 
+			{
+				$tmp_name = $_FILES["capture"]["tmp_name"][$key];
 
-			// ディレクトリトラバーサル攻撃への対処
-			$name = basename($_FILES["capture"]["name"][$key]);
+				// ディレクトリトラバーサル攻撃への対処
+				$name = basename($_FILES["capture"]["name"][$key]);
 
-			$name = str_replace(' ', '_', $name);
-			move_uploaded_file($tmp_name, "$uploads_dir/$name");
-			$view['upload_message'] .= $name." 成功\\n";
-		}
-		else
-		{
-			$view['upload_message'] .= "失敗\\n";
+				$name = str_replace(' ', '_', $name);
+				move_uploaded_file($tmp_name, "$uploads_dir/$name");
+				$view['upload_message'] .= $name." 成功\\n";
+			}
+			else
+			{
+				$view['upload_message'] .= "失敗\\n";
+			}
 		}
 	}
 
