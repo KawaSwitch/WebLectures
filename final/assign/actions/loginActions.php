@@ -12,12 +12,33 @@ function prepareLogin($view)
 
 function checkLogin($view)
 {
-	// ユーザデータの設定
-	$userData = array('manager'=>1111, 'guest'=>2222);
+	// ユーザデータの設定（本課題ではハードコーディング...）
+	$userData = array('manager'=>1111, 'guest'=>2222, 'かるた'=>101656793517370583575);
+	$username = "";
+	$password = "";
 
-	// ログインデータのチェック
-	$username = $_POST['username'];
-	$password = $_POST['password'];
+	$id_token = filter_input(INPUT_POST, 'id_token');
+	if ($id_token)
+	{
+		$_SESSION['loginBy'] = 'google';
+		define('CLIENT_ID', '282086877099-0tbur6mtoah3pb0co4ht3sooqkgi9612.apps.googleusercontent.com');
+		
+		$client = new Google_Client(['client_id' => CLIENT_ID]); 
+		$client->addScope("email");
+		$payload = $client->verifyIdToken($id_token);
+		var_dump($payload);
+		if ($payload) {
+			$username = $payload['name'];
+			$password = $payload['sub'];
+		}
+	}
+	else
+	{
+		// ログインデータのチェック
+		$username = $_POST['username'];
+		$password = $_POST['password'];
+	}
+
 	$_SESSION['username'] = $username;
 
 	if (!isset($userData[$username]))
@@ -37,7 +58,29 @@ function checkLogin($view)
 
 function logout()
 {
+	if (isset($_SESSION['loginBy']))
+	{
+		switch ($_SESSION['loginBy'])
+		{
+			case 'google':
+				echo <<< EOM
+					<script src="https://apis.google.com/js/platform.js"></script>
+					<meta name="google-signin-client_id" content="282086877099-0tbur6mtoah3pb0co4ht3sooqkgi9612.apps.googleusercontent.com">
+					<script src="js/signin.js"></script>
+					<script type="text/javascript">
+						signOut();
+					</script>
+				EOM;
+			break;
+
+			default:
+				die("未定義のログイン情報です。");
+		}
+	}
+
+	// セッション情報を削除
 	$_SESSION = array();
+	session_destroy();
 }
 
 function isLoginned()

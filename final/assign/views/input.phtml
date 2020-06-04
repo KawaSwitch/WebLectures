@@ -2,10 +2,14 @@
 <html>
 	<head>
 		<meta charset=utf-8>
+		<meta name="google-signin-client_id" content="282086877099-0tbur6mtoah3pb0co4ht3sooqkgi9612.apps.googleusercontent.com">
+
 		<link rel="stylesheet" type="text/css" href="css/base.css">
 		<link rel="stylesheet" type="text/css" href="css/questionnaire.css">
 		<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 		<title>アンケート調査</title>
+
+		<script src="js/signin.js"></script>
 	</head>
 	<body>
 		<header>
@@ -15,7 +19,7 @@
 			<div id='menu'>
 				<div class='logout-container'>
 					<form id="logout-form" method="POST" action="index.php?event=logout">
-						<input class="logout" type="submit" value="log out">
+						<input class="logout" type="submit" value="log out" onclick="signOut()">
 					</form>
 				</div>
 			</div>

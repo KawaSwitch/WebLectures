@@ -1,8 +1,14 @@
 <html>
 	<head>
 		<meta charset=utf-8>
+
 		<link rel="stylesheet" type="text/css" href="css/base.css">
 		<link rel="stylesheet" type="text/css" href="css/questionnaire.css">
+
+		<!-- Google Login API -->
+		<script src="https://apis.google.com/js/platform.js" async defer></script>
+		<meta name="google-signin-client_id" content="282086877099-0tbur6mtoah3pb0co4ht3sooqkgi9612.apps.googleusercontent.com">
+
 		<title>アンケート回答用ログイン</title>
 	</head>
 
@@ -30,6 +36,13 @@
 				</div><br>
 				<input class="submit" type="submit" value="ログイン">
 			</form>
+
+			<!-- SNS Login -->
+			<script src="js/signin.js"></script>
+			<div class="q-submit">
+				<p>or</p>
+				<div class="g-signin2" data-onsuccess="onSignIn"></div>
+			</div>
 		</div>
 	</body>
 </html>

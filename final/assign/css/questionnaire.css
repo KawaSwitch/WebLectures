@@ -58,6 +58,10 @@ img {
 	width: 150px;
 }
 
+.g-signin2 {
+	display: inline-block;
+}
+
 .pre-question p {
 	margin: 0;
 }

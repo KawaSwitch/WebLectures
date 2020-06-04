@@ -4,6 +4,8 @@
 	require_once './actions/inputActions.php';
 	require_once './actions/showActions.php';
 	require_once './actions/loginActions.php';
+	// Google Login API
+	require_once 'vendor/autoload.php';
 
 	// セッションの開始
 	session_start();
