@@ -302,3 +302,30 @@ input[type="submit"][disabled]{
 .input-container p {
 	margin: 0 auto; /* 上下の隙間を無くす目的 */
 }
+
+#menu {
+	float: right;
+	width: 120px;
+	height: 50px;
+}
+
+header #logout-form {
+	margin: 0;
+	padding: 0;
+}
+header .logout {
+	height: 50px;
+	width: 120px;
+}
+header input {
+	margin: 0;
+	padding: 0;
+	border-width: 0;
+	background: rgba(255, 255, 255, 0.2);
+	color: #ffffff;
+	font-weight: bold;
+	font-size: 18px;
+}
+header input:hover {
+	background: rgba(255, 255, 255, 0.5);
+}

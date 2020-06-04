@@ -4,15 +4,14 @@ header {
 	height: 50px; /* ヘッダ部分の高さ */
 	background: #55C500;
 	/* background-image: url("header.jpg"); */
-	display: flex;
-	justify-content: center;
-	align-items: center;
 }
 .header-inner {
 	color: #ffffff;
 	font-size:22px;
+	margin: 10px;
 	font-family: 'Hiragino Kaku Gothic Pro','ヒラギノ角ゴ Pro W3','メイリオ',Meiryo,'ＭＳ Ｐゴシック',sans-serif;
 	font-weight: bold;
+	float: left;
 }
 
 body {
