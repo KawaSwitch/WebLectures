@@ -13,7 +13,7 @@ function prepareLogin($view)
 function checkLogin($view)
 {
 	// ユーザデータの設定（本課題ではハードコーディング...）
-	$userData = array('manager'=>1111, 'guest'=>2222);
+	$userData = array('manager'=>1111, 'guest'=>2222, 'ika'=>3333, 'tako'=>4444);
 	$username = "";
 	$password = "";
 

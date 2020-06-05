@@ -9,17 +9,17 @@ function onSignIn(googleUser)
 
 	var id_token = googleUser.getAuthResponse().id_token;
 	var xhr = new XMLHttpRequest();
-	xhr.open('POST', 'index.php?event=checkLogin');
+	xhr.open('POST', 'index.php?event=checkLogin', false);
 	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
-	xhr.onload = function() {
-		console.log('Signed in as: ' + xhr.responseText);
-	};
+	// xhr.onload = function() {
+	// 	console.log('response: ' + xhr.responseText);
+	// };
 
 	// IDトークンをサーバ側へ渡す
 	xhr.send('id_token=' + id_token);
 
-	window.location.href = 'index.php?event=showInputPage';
+	window.location = 'index.php?event=showInputPage';
 }
 
 function signOut() 
